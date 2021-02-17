@@ -32,6 +32,5 @@ namespace SchoolWebApi.Models
         public Activities Name { get; set; }
         public Season Duration { get; set; }
         public int MyProperty { get; set; }
-
     }
 }
