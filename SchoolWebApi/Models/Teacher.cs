@@ -7,12 +7,5 @@ namespace SchoolWebApi.Models
 {
     public class Teacher
     {
-<<<<<<< Updated upstream
-=======
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        //public virtual DepartmentName Department { get; set; }
->>>>>>> Stashed changes
     }
 }
