@@ -9,15 +9,6 @@ namespace SchoolWebApi.Models
     {
         public int Id { get; set; }
         public string name { get; set; }
-        public enum Department
-        {
-            English = 1,
-            Math,
-            Science,
-            SocialStudies, 
-            WorldLanguages,
-            Arts,
-            PhysicalEducation
-        }
+        //public virtual DepartmentName Department { get; set; }
     }
 }

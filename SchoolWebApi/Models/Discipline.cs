@@ -18,5 +18,6 @@ namespace SchoolWebApi.Models
             OutOfSchoolSuspension,
             Expulsion,
         }
+        public Type DisciplineType { get; set; }
     }
 }
