@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SchoolWebApi.Models
+namespace School.Data
 {
     public class Course
     {
@@ -17,7 +18,7 @@ namespace SchoolWebApi.Models
             Art,
             PhysicalEducation
         }
-
+        [Key]
         public int Id { get; set; }
 
 
@@ -26,11 +27,16 @@ namespace SchoolWebApi.Models
 
         public DepartmentName Department { get; set; }
 
+        public virtual ICollection<Teacher> TeacherList { get; set; }
+        public virtual ICollection<Student> StudentList { get; set; }
 
-        public int TeacherList { get; set; }
+        public Course()
+        {
+            TeacherList = new HashSet<Teacher>();
+            StudentList = new HashSet<Student>();
+        }
 
 
-        public int StudentList { get; set; }
 
         /* not sure if we will use this one
         public string Supplies { get; set; }

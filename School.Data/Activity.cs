@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace SchoolWebApi.Models
+namespace School.Data
 {
     public class Activity
     {
