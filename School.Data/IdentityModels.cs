@@ -32,7 +32,7 @@ namespace School.Data
             return new ApplicationDbContext();
         }
 
-        public DbSet<Note> Notes { get; set; }
+        //public DbSet<Note> Notes { get; set; }
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {
