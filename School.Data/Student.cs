@@ -5,27 +5,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace SchoolWebApi.Models
+namespace School.Data
 {
     public class Student
     {
-        public enum LevelOfGrade
-        {
-            Ninth,         
-            Tenth,
-            Eleventh,
-            Twelfth
-        }
 
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public LevelOfGrade GradeLevel { get; set; }
-        //[ForeignKey("Activity")]
-        //public virtual int Activities { get; set; }
-        //[ForeignKey("Course")]
-        //public virtual int Courses { get; set; }
-        //[ForeignKey("Discipline")]
-        //public virtual int DisciplineRecord { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        //attribute on gradelevel
+        public int GradeLevel { get; set; }
+
+        public virtual ICollection<Activity> ActivityList { get; set; }
+        public virtual ICollection<Course> CourseList { get; set; }
+        public virtual ICollection<Discipline> DisciplineList { get; set; }
+
+        public Student()
+        {
+            ActivityList = new HashSet<Activity>();
+            CourseList = new HashSet<Course>();
+            DisciplineList = new HashSet<Discipline>();
+        }
     }
 }
