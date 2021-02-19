@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,7 +19,7 @@ namespace SchoolWebApi.Models
             AllYear
         }
 
-        public enum Activities  
+        public enum Activities
         {
             Football = 1,
             Soccer,
@@ -27,10 +29,22 @@ namespace SchoolWebApi.Models
             Drama,
             Band
         }
-
+        [Key]
         public int Id { get; set; }
         public Activities Name { get; set; }
         public Season Duration { get; set; }
-        public int MyProperty { get; set; }
+
+        [ForeignKey("Teacher")]
+        public int TeacherId { get; set; }
+        public virtual Teacher LeadTeacher { get; set; }
+
+        public virtual ICollection<Student> StudentList { get; set; }
+
+        public Activity()
+        {
+            StudentList = new HashSet<Student>();
+
+        }
+
     }
 }
