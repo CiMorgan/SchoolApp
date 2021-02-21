@@ -12,11 +12,12 @@ namespace School.Data
 
         [Key]
         public int Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
-
+        [Required]
         public string LastName { get; set; }
 
-        //attribute on gradelevel
+        [Required]
         public int GradeLevel { get; set; }
 
         public virtual ICollection<Activity> ActivityList { get; set; }

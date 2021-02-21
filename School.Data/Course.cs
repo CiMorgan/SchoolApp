@@ -8,16 +8,16 @@ namespace School.Data
 {
     public class Course
     {
-        public enum DepartmentName
-        {
-            English = 1,
-            Math,
-            Science,
-            SocialStudies,
-            WorldLanguages,
-            Art,
-            PhysicalEducation
-        }
+        //public enum DepartmentName
+        //{
+        //    English = 1,
+        //    Math,
+        //    Science,
+        //    SocialStudies,
+        //    WorldLanguages,
+        //    Art,
+        //    PhysicalEducation
+        //}
         [Key]
         public int Id { get; set; }
 
@@ -25,7 +25,7 @@ namespace School.Data
         public string Name { get; set; }
 
 
-        public DepartmentName Department { get; set; }
+        //public DepartmentName Department { get; set; }
 
         public virtual ICollection<Teacher> TeacherList { get; set; }
         public virtual ICollection<Student> StudentList { get; set; }
