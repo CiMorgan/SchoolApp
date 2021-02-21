@@ -7,7 +7,7 @@ using System.Web;
 
 namespace School.Data
 {
-    public class Student
+    public class Student //student object
     {
 
         [Key]
