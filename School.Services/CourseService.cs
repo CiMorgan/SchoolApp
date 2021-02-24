@@ -64,15 +64,15 @@ namespace School.Services
                 var entity =
                     ctx
                         .Courses
-                        .Single(e => e.CourseId == id);
+                        .Single(e => e.Id == id);
                 return
-                    new CourseCreate
+                    new CourseUpdate
                     {
-                        Id = entity.Id,
-                        Name = entity.Name,
-                        Department = entity.Department,
-                        TeacherList = entity.TeacherList,
-                        StudentList = entity.StudentList,
+                        CourseId = entity.Id,
+                        CourseName = entity.Name,
+                        CourseDepartment = entity.Department,
+                        //CourseTeacher = entity.TeacherList,
+                        //CourseStudent = entity.StudentList,
                         
                     };
             }
@@ -85,7 +85,7 @@ namespace School.Services
                 var entity =
                     ctx
                         .Courses
-                        .Single(e => e.CourseId == model.CourseId );
+                        .Single(e => e.Id == model.CourseId );
 
                 entity.Id = model.CourseId;
                 entity.Name = model.CourseName;
@@ -104,7 +104,7 @@ namespace School.Services
                 var entity =
                     ctx
                         .Courses
-                        .Single(e => e.CourseId == courseId);
+                        .Single(e => e.Id == courseId);
 
                 ctx.Courses.Remove(entity);
 
