@@ -19,7 +19,7 @@ namespace School.Data
             AllYear
         }
 
-        public enum Activities
+        public enum NameOfActivity
         {
             Football = 1,
             Soccer,
@@ -31,10 +31,10 @@ namespace School.Data
         }
         [Key]
         public int Id { get; set; }
-        public Activities Name { get; set; }
+        public NameOfActivity Name { get; set; }
         public Season Duration { get; set; }
 
-        //[ForeignKey("Teacher")]
+        [ForeignKey("Teacher")]
         public int TeacherId { get; set; }
         public virtual Teacher LeadTeacher { get; set; }
 
@@ -43,7 +43,6 @@ namespace School.Data
         public Activity()
         {
             StudentList = new HashSet<Student>();
-
         }
 
     }
