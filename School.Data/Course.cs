@@ -21,9 +21,10 @@ namespace School.Data
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
-
+        [Required]
         public NameOfDepartment Department { get; set; }
 
         public virtual ICollection<Teacher> TeacherList { get; set; }
