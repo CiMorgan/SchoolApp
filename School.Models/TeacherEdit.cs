@@ -9,24 +9,25 @@ namespace School.Models
 {
     public class TeacherEdit
     {
-        public int TeacherId { get; set; }
         [Display(Name = "ID")]
+        public int TeacherId { get; set; }
+
+        [Display(Name = "Teacher Name")]
         public string TeacherName { get; set; }
-        [Display(Name = "Name")]
 
-        public List<string> TeacherDepartment { get; set; }
         [Display(Name = "Department")]
+        public List<string> TeacherDepartment { get; set; }
 
+        [Display(Name = "Courses Taught")]
         public List<string> TeacherCourseList { get; set; }
-        [Display(Name = "Courses")]
 
-        public List<string> TeacherActivityList { get; set; }
         [Display(Name = "Activity")]
+        public List<string> TeacherActivityList { get; set; }
 
-        public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name = "Created")]
+        public DateTimeOffset CreatedUtc { get; set; }
 
-        public DateTimeOffset? ModifiedUtc { get; set; }
         [Display(Name = "Modified")]
+        public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
