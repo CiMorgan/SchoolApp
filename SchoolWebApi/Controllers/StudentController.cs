@@ -28,6 +28,14 @@ namespace SchoolWebApi.Controllers
             return Ok(students);
         }
 
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            StudentService studentService = CreateStudentService();
+            var student = studentService.GetStudentById(id);
+            return Ok(student);
+        }
+
         [HttpPost]
         public IHttpActionResult Post(StudentCreate student)
         {
@@ -37,6 +45,31 @@ namespace SchoolWebApi.Controllers
             var service = CreateStudentService();
 
             if (!service.CreateStudent(student))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        [HttpPut]
+        public IHttpActionResult Put(StudentUpdate model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateStudentService();
+
+            if (!service.UpdateStudent(model))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateStudentService();
+
+            if (!service.DeleteStudent(id))
                 return InternalServerError();
 
             return Ok();

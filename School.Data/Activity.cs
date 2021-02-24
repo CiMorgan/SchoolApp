@@ -34,7 +34,7 @@ namespace School.Data
         public NameOfActivity Name { get; set; }
         public Season Duration { get; set; }
 
-        //[ForeignKey("Teacher")]
+        [ForeignKey("Teacher")]
         public int TeacherId { get; set; }
         public virtual Teacher LeadTeacher { get; set; }
 
@@ -43,7 +43,6 @@ namespace School.Data
         public Activity()
         {
             StudentList = new HashSet<Student>();
-
         }
 
     }
