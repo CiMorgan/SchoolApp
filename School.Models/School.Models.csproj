@@ -54,6 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
+    <Compile Include="DisciplineCreate.cs" />
+    <Compile Include="DisciplineDetail.cs" />
+    <Compile Include="DisciplineEdit.cs" />
+    <Compile Include="DisciplineListItem.cs" />
+    <Compile Include="TeacherCreate.cs" />
+    <Compile Include="TeacherDetail.cs" />
+    <Compile Include="TeacherEdit.cs" />
+    <Compile Include="TeacherListItem.cs" />
     <Compile Include="ActivityCreate.cs" />
     <Compile Include="ActivityUpdate.cs" />
     <Compile Include="CourseCreate.cs" />
