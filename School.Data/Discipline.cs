@@ -9,8 +9,12 @@ namespace School.Data
     public class Discipline
     {
         [Key]
-        public int Id { get; set; }
+        public int DisciplineId { get; set; }
+
+        [Required]
+        public Guid OwnerId { get; set; }
         public DateTime Date { get; set; }
+        public DateTimeOffset? ModifiedUtc { get; set; }
 
         //attribute on comment
         public string Comment { get; set; }
@@ -23,6 +27,7 @@ namespace School.Data
             Expulsion
         }
         public TypeOfDiscipline DisciplineType { get; set; }
+        public DateTimeOffset CreatedUtc { get; set; }
 
         public virtual ICollection<Student> StudentList { get; set; }
 

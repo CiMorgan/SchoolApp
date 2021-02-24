@@ -54,9 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DisciplineCreate.cs" />
+    <Compile Include="DisciplineDetail.cs" />
+    <Compile Include="DisciplineEdit.cs" />
+    <Compile Include="DisciplineListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentCreate.cs" />
     <Compile Include="StudentItems.cs" />
+    <Compile Include="TeacherCreate.cs" />
+    <Compile Include="TeacherDetail.cs" />
+    <Compile Include="TeacherEdit.cs" />
+    <Compile Include="TeacherListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
