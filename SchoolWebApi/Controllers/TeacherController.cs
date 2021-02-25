@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace SchoolWebApi.Controllers
 {
         [Authorize]
-        public class Controller : ApiController
+        public class TeacherController : ApiController
         {
             public IHttpActionResult Get()
             {
