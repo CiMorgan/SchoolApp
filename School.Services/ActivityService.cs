@@ -49,8 +49,7 @@ namespace School.Services
                                 new ActivityUpdate
                                 {
                                     ActivityId = e.Id,
-                                    ActivityName = e.Name,
-
+                                    //ActivityName = e.Name
                                 }
                         );
 
@@ -65,16 +64,16 @@ namespace School.Services
                 var entity =
                     ctx
                         .Activities
-                        .Single(e => e.ActivityId == id);
+                        .Single(e => e.Id == id);
                 return
-                    new ActivityCreate
+                    new ActivityUpdate
                     {
-                        Id = entity.Id,
-                        Name = entity.Name,
-                        Duration = entity.Duration,
-                        TeacherId = entity.TeacherId,
-                        LeadTeacher = entity.LeadTeacher,
-                        StudentList = entity.StudentList,
+                        ActivityId = entity.Id,
+                        //ActivityName = entity.Name,
+                        //ActivityDuration = entity.Duration,
+                        ActivityTeacherId = entity.TeacherId
+                        //LeadTeacher = entity.LeadTeacher,
+                        //StudentList = entity.StudentList,
 
                     };
             }
@@ -87,11 +86,11 @@ namespace School.Services
                 var entity =
                     ctx
                         .Activities
-                        .Single(e => e.ActivityId == model.ActivityId);
+                        .Single(e => e.Id == model.ActivityId);
 
                             entity.Id = model.ActivityId;
-                            entity.Name = model.ActivityName;
-                            entity.Duration = model.ActivityDuration;
+                            //entity.Name = model.ActivityName;
+                            //entity.Duration = model.ActivityDuration;
 
                 return ctx.SaveChanges() == 1;
 
@@ -106,7 +105,7 @@ namespace School.Services
                 var entity =
                     ctx
                         .Activities
-                        .Single(e => e.CourseId == activityId);
+                        .Single(e => e.Id == activityId);
 
                 ctx.Activities.Remove(entity);
 
