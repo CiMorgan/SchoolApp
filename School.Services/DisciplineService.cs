@@ -46,13 +46,54 @@ namespace School.Services
                                  {
                                      DisciplineId = e.DisciplineId,
                                      Comment = e.Comment,
-                                     CreatedUtc = e.Date
+                                     CreatedUtc = e.CreatedUtc,
+                                     ModifiedUtc = e.ModifiedUtc,
                                  }
                          );
 
                  return query.ToArray();
              }
          }
+        public DisciplineDetail GetDisciplineById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Disciplines
+                        .Single(e => e.DisciplineId == id);
+                return
+                    new DisciplineDetail
+                    {
+                        DisciplineId = entity.DisciplineId,
+                        Comment = entity.Comment,
+                        CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc
+                    };
+            }
+        }
+        public IEnumerable<DisciplineListItem> GetAllDiscipline()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Disciplines
+                        .Select(
+                            e =>
+                                new DisciplineListItem
+                                {
+                                    DisciplineId = e.DisciplineId,
+                                    Comment = e.Comment,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ModifiedUtc = e.ModifiedUtc,
+                                }
+                        );
+
+                return query.ToArray();
+            }
+
+        }
         public bool UpdateDiscipline(DisciplineEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -60,7 +101,7 @@ namespace School.Services
                 var entity =
                     ctx
                         .Disciplines
-                        .Single(e => e.DisciplineId == model.DisciplineId && e.OwnerId == _userId);
+                        .Single(e => e.DisciplineId == model.DisciplineId);
 
                 entity.Comment = model.Comment;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
@@ -75,29 +116,11 @@ namespace School.Services
                 var entity =
                     ctx
                         .Disciplines
-                        .Single(e => e.DisciplineId == disciplineId && e.OwnerId == _userId);
+                        .Single(e => e.DisciplineId == disciplineId);
 
                 ctx.Disciplines.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
-            }
-        }
-        public DisciplineDetail GetDisciplineById(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Disciplines
-                        .Single(e => e.DisciplineId == id && e.OwnerId == _userId);
-                return
-                    new DisciplineDetail
-                    {
-                        DisciplineId = entity.DisciplineId,
-                        Comment = entity.Comment,
-                        CreatedUtc = entity.CreatedUtc,
-                        ModifiedUtc = entity.ModifiedUtc
-                    };
             }
         }
     }

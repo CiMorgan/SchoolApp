@@ -13,5 +13,11 @@ namespace School.Models
         public int DisciplineId { get; set; }
         [Required]
         public string Comment { get; set; }
+
+        [Display(Name = "Created")]
+        public DateTimeOffset CreatedUtc { get; set; }
+
+        [Display(Name = "Modified")]
+        public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
