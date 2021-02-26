@@ -71,8 +71,13 @@ namespace School.Services
                         CourseId = entity.Id,
                         CourseName = entity.Name,
                         CourseDepartment = entity.Department,
+
                         //CourseTeacher = entity.Teacher,
                         //CourseStudent = entity.Student,
+
+                        //CourseTeacher = entity.TeacherList,
+                        //CourseStudent = entity.StudentList,
+
                         
                     };
             }

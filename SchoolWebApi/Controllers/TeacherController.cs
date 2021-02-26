@@ -11,12 +11,12 @@ using System.Web.Http;
 namespace SchoolWebApi.Controllers
 {
         [Authorize]
-        public class Controller : ApiController
+        public class TeacherController : ApiController
         {
             public IHttpActionResult Get()
             {
                 TeacherService teacherService = CreateTeacherService();
-                var teacher = teacherService.GetAllTeacher();
+                var teacher = teacherService.GetTeacher();
                 return Ok(teacher);
             }
             public IHttpActionResult Post(TeacherCreate teacher)
@@ -61,7 +61,7 @@ namespace SchoolWebApi.Controllers
         {
             var service = CreateTeacherService();
 
-            if (!service.DeleteNote(id))
+            if (!service.DeleteTeacher(id))
                 return InternalServerError();
 
             return Ok();
