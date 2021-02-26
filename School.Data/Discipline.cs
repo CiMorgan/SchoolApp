@@ -29,9 +29,9 @@ namespace School.Data
         //[ForeignKey("DisciplineList")]
         //public virtual Student DisciplineList { get; set; }
 
-        public Discipline()
-        {
-            StudentList = new HashSet<Student>();
-        }
+        //public Discipline()
+        //{
+        //    StudentList = new HashSet<Student>();
+        //}
     }
 }
