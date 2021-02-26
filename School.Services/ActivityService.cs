@@ -24,7 +24,7 @@ namespace School.Services
                 Id = model.Id,
                 Name = model.Name,
                 Duration = model.Duration,
-                TeacherId = model.TeacherId,
+                //TeacherId = model.TeacherId,
                 //LeadTeacher = model.LeadTeacher,
                 StudentList = model.StudentList,
 
@@ -48,7 +48,7 @@ namespace School.Services
                             e =>
                                 new ActivityUpdate
                                 {
-                                    ActivityId = e.Id,
+                                    //ActivityId = e.Id,
                                     //ActivityName = e.Name
                                 }
                         );
@@ -71,7 +71,7 @@ namespace School.Services
                         ActivityId = entity.Id,
                         //ActivityName = entity.Name,
                         //ActivityDuration = entity.Duration,
-                        ActivityTeacherId = entity.TeacherId
+                        //ActivityTeacherId = entity.TeacherId
                         //LeadTeacher = entity.LeadTeacher,
                         //StudentList = entity.StudentList,
 

@@ -29,11 +29,11 @@ namespace School.Data
         public TypeOfDiscipline DisciplineType { get; set; }
         public DateTimeOffset CreatedUtc { get; set; }
 
-        public virtual ICollection<Student> StudentList { get; set; }
+        //public virtual ICollection<Student> StudentList { get; set; }
 
-        public Discipline()
-        {
-            StudentList = new HashSet<Student>();
-        }
+        //public Discipline()
+        //{
+        //    StudentList = new HashSet<Student>();
+        //}
     }
 }

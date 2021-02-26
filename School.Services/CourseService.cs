@@ -24,8 +24,8 @@ namespace School.Services
                     Id = model.Id,
                     Name = model.Name,
                     Department = model.Department,
-                    TeacherList = model.TeacherList,
-                    StudentList = model.StudentList,
+                    //TeacherList = model.TeacherList,
+                    //StudentList = model.StudentList,
                     
                 };
             //will have to fix identity models "courses" in class
@@ -76,9 +76,9 @@ namespace School.Services
                         //CourseStudent = entity.Student,
 
                         //CourseTeacher = entity.TeacherList,
+                      
                         //CourseStudent = entity.StudentList,
 
-                        
                     };
             }
         }
@@ -97,9 +97,7 @@ namespace School.Services
                 entity.Department = model.CourseDepartment;
 
                 return ctx.SaveChanges() == 1;
-
             }
-
         }
 
         public bool DeleteCourse(int courseId)

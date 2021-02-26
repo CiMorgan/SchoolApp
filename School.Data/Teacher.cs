@@ -10,8 +10,6 @@ namespace School.Data
     {
         [Key]
         public int TeacherId { get; set; }
-        [Required]
-        public Guid OwnerId { get; set; }
         public string TeacherName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

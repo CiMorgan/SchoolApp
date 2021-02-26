@@ -66,9 +66,9 @@ namespace School.Services
                 return
                     new TeacherDetail
                     {
-                        TeacherId = entity.TeacherId, 
+                        TeacherId = entity.TeacherId,
                         TeacherName = entity.TeacherName,
-                    //// need to add enums
+                        //// need to add enums
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
