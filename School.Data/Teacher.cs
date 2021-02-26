@@ -10,8 +10,6 @@ namespace School.Data
     {
         [Key]
         public int TeacherId { get; set; }
-        [Required]
-        public Guid OwnerId { get; set; }
         public string TeacherName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -26,12 +24,8 @@ namespace School.Data
             Art,
             PhysicalEducation
         }
-
         public DepartmentName Department { get; set; }
-
-
         public virtual ICollection<Course> CourseList { get; set; }
-
         public Teacher()
         {
             CourseList = new HashSet<Course>();

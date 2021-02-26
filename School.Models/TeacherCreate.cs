@@ -10,7 +10,7 @@ namespace School.Models
     public class TeacherCreate
     {
         [Required]
-        public int Id { get; set; }
+        public int TeacherId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
