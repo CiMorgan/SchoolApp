@@ -11,6 +11,15 @@ namespace School.Models
     {
         [Display(Name = "ID")]
         public int DisciplineId { get; set; }
+        public enum TypeOfDiscipline
+        {
+            Detention = 1,
+            InSchoolSuspension,
+            OutOfSchoolSuspension,
+            Expulsion
+        }
+        public TypeOfDiscipline DisciplineType { get; set; }
+
         [Display(Name = "Comment")]
         public string Comment { get; set; }
 

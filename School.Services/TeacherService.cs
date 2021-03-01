@@ -26,7 +26,7 @@ namespace School.Services
                     TeacherId = model.TeacherId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    //department enum
+                    Department = (Teacher.DepartmentName)model.Department,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -48,6 +48,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
+                                    Department = (TeacherListItem.DepartmentName)e.Department,
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
@@ -69,7 +70,7 @@ namespace School.Services
                     {
                         TeacherId = entity.TeacherId,
                         TeacherName = entity.LastName + entity.FirstName,
-                        //// need to add enums
+                        Department = (TeacherDetail.DepartmentName)entity.Department,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
@@ -88,7 +89,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    //department enum
+                                    Department = (TeacherListItem.DepartmentName)e.Department,
                                 }
                         );
 
@@ -108,7 +109,7 @@ namespace School.Services
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
-                /// need to add dep enums
+                entity.Department = (Teacher.DepartmentName)model.Department;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;

@@ -13,6 +13,14 @@ namespace School.Models
         public int DisciplineId { get; set; }
         [Required]
         public string Comment { get; set; }
+        public enum TypeOfDiscipline
+        {
+            Detention = 1,
+            InSchoolSuspension,
+            OutOfSchoolSuspension,
+            Expulsion
+        }
+        public TypeOfDiscipline DisciplineType { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }

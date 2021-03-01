@@ -17,8 +17,17 @@ namespace School.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        [Display(Name = "Department")]
-        public List<string> TeacherDepartment { get; set; }
+        public enum DepartmentName
+        {
+            English = 1,
+            Math,
+            Science,
+            SocialStudies,
+            WorldLanguages,
+            Art,
+            PhysicalEducation
+        }
+        public DepartmentName Department { get; set; }
 
         [Display(Name = "Courses Taught")]
         public List<string> TeacherCourseList { get; set; }
