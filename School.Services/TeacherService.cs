@@ -48,7 +48,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    Department = (TeacherListItem.DepartmentName)e.Department,
+                                    Department = (Teacher.DepartmentName)e.Department,
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
@@ -70,7 +70,7 @@ namespace School.Services
                     {
                         TeacherId = entity.TeacherId,
                         TeacherName = entity.LastName + entity.FirstName,
-                        Department = (TeacherDetail.DepartmentName)entity.Department,
+                        Department = (Teacher.DepartmentName)entity.Department,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
@@ -89,7 +89,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    Department = (TeacherListItem.DepartmentName)e.Department,
+                                    Department = (Teacher.DepartmentName)e.Department,
                                 }
                         );
 
