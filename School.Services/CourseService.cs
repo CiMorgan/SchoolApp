@@ -20,14 +20,15 @@ namespace School.Services
         public bool CreateCourse(CourseCreate model)
         {
             var entity = new Course()
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Department = model.Department,
-                    //TeacherList = model.TeacherList,
-                    //StudentList = model.StudentList,
-                    
-                };
+
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Department = model.Department,
+                //TeacherList = model.TeacherList,
+                //StudentList = model.StudentList,
+
+            };
             //will have to fix identity models "courses" in class
             using (var ctx = new ApplicationDbContext())
             {
@@ -90,7 +91,7 @@ namespace School.Services
                 var entity =
                     ctx
                         .Courses
-                        .Single(e => e.Id == model.CourseId );
+                        .Single(e => e.Id == model.CourseId);
 
                 entity.Id = model.CourseId;
                 entity.Name = model.CourseName;
@@ -115,6 +116,26 @@ namespace School.Services
             }
         }
 
-
+        public bool AddStudentToCourse(AddStudent model, int id)
+        {
+            var stList = new AddStudent()
+            {
+                StudentCourseList = model.StudentCourseList
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Courses
+                        .Single(e => e.Id == id);
+                foreach (int studentId in stList.StudentCourseList)
+                {
+                    var student = ctx
+                        .Students.Single(s => s.Id == studentId);
+                    entity.StudentList.Add(student);
+                }
+                return ctx.SaveChanges() > 0;
+            }
+        }
     }
 }

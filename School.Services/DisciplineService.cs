@@ -46,7 +46,7 @@ namespace School.Services
                                  new DisciplineListItem
                                  {
                                      DisciplineId = e.DisciplineId,
-                                     DisciplineType = (Discipline.TypeOfDiscipline)e.DisciplineType,
+
                                      Comment = e.Comment,
                                      CreatedUtc = e.CreatedUtc,
                                      ModifiedUtc = e.ModifiedUtc,
@@ -68,7 +68,9 @@ namespace School.Services
                     new DisciplineDetail
                     {
                         DisciplineId = entity.DisciplineId,
+
                         DisciplineType = (Discipline.TypeOfDiscipline)entity.DisciplineType,
+
                         Comment = entity.Comment,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
@@ -87,7 +89,9 @@ namespace School.Services
                                 new DisciplineListItem
                                 {
                                     DisciplineId = e.DisciplineId,
+
                                     DisciplineType = (Discipline.TypeOfDiscipline)e.DisciplineType,
+
                                     Comment = e.Comment,
                                     CreatedUtc = e.CreatedUtc,
                                     ModifiedUtc = e.ModifiedUtc,

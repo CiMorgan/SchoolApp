@@ -48,7 +48,9 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
+
                                     Department = e.Department,
+
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
@@ -69,6 +71,7 @@ namespace School.Services
                     new TeacherDetail
                     {
                         TeacherId = entity.TeacherId,
+
                         TeacherName = entity.LastName + entity.FirstName,
                         Department = entity.Department,
                         CreatedUtc = entity.CreatedUtc,
@@ -89,7 +92,9 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
+
                                     Department = (Teacher.DepartmentName)e.Department,
+
                                 }
                         );
 
