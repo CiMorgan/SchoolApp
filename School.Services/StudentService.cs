@@ -62,7 +62,7 @@ namespace School.Services
                     ctx
                         .Students
                         .Single(e => e.Id == id);
-
+              
                 //List<string> cList = new List<string>();
                 //if (entity.CourseList.Count != 0)
                 //{
@@ -71,7 +71,7 @@ namespace School.Services
                 //        cList = cList.Add(course.Name);
                 //    }
                 //}
-
+  
                 return
 
                     new StudentItems
@@ -79,7 +79,9 @@ namespace School.Services
                         StudentId = entity.Id,
                         StudentName = entity.LastName + entity.FirstName,
                         StudentGrade = entity.GradeLevel,
+                  
  //                     StudentCourses = cList                    
+
                     };
             }
         }

@@ -16,6 +16,7 @@ namespace School.Models
         [Display(Name = "Teacher Name")]
         public string TeacherName { get; set; }
 
+
         public DepartmentName Department { get; set; }
 
         [Display(Name = "Courses Taught")]

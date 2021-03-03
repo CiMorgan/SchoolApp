@@ -8,7 +8,6 @@ namespace School.Data
 {
     public class Teacher
     {
-        //hi
         [Key]
         public int TeacherId { get; set; }
         public string TeacherName { get; set; }
