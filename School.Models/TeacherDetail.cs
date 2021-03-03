@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static School.Data.Teacher;
 
 namespace School.Models
 {
@@ -15,8 +16,7 @@ namespace School.Models
         [Display(Name = "Teacher Name")]
         public string TeacherName { get; set; }
 
-        [Display(Name = "Department")]
-        public List<string> TeacherDepartment { get; set; }
+        public DepartmentName Department { get; set; }
 
         [Display(Name = "Courses Taught")]
         public List<string> TeacherCourseList { get; set; }
