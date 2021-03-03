@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using SchoolWebApi.Providers;
 using SchoolWebApi.Models;
+using School.Data;
 
 namespace SchoolWebApi
 {
