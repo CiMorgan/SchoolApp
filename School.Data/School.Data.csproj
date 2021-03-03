@@ -91,13 +91,9 @@
     <Compile Include="Course.cs" />
     <Compile Include="Discipline.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202102210121082_InitialCreate.cs" />
-    <Compile Include="Migrations\202102210121082_InitialCreate.Designer.cs">
-      <DependentUpon>202102210121082_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102232200490_Name.cs" />
-    <Compile Include="Migrations\202102232200490_Name.Designer.cs">
-      <DependentUpon>202102232200490_Name.cs</DependentUpon>
+    <Compile Include="Migrations\202102260318089_intialmigration.cs" />
+    <Compile Include="Migrations\202102260318089_intialmigration.designer.cs">
+      <DependentUpon>202102260318089_intialmigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202102260234481_Feb25Mig.cs" />
     <Compile Include="Migrations\202102260234481_Feb25Mig.Designer.cs">
@@ -113,11 +109,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102210121082_InitialCreate.resx">
-      <DependentUpon>202102210121082_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102232200490_Name.resx">
-      <DependentUpon>202102232200490_Name.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102260318089_intialmigration.resx">
+      <DependentUpon>202102260318089_intialmigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102260234481_Feb25Mig.resx">
       <DependentUpon>202102260234481_Feb25Mig.cs</DependentUpon>

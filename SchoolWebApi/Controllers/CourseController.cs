@@ -58,6 +58,19 @@ namespace SchoolWebApi.Controllers
 
             return Ok();
         }
+        [HttpPut]
+        public IHttpActionResult AddStudentToCourse(List<int> model, int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateCourseService();
+
+            if (!service.AddStudentToCourse(model, id))
+                return InternalServerError();
+
+            return Ok();
+        }
 
         public IHttpActionResult Delete(int id)
         {

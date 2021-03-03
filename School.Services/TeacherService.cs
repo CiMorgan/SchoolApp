@@ -23,9 +23,10 @@ namespace School.Services
             var entity =
                 new Teacher()
                 {
-                    TeacherId = model.Id,
+                    TeacherId = model.TeacherId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
+                    Department = (Teacher.DepartmentName)model.Department,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -41,13 +42,13 @@ namespace School.Services
                 var query =
                     ctx
                         .Teachers
-                        .Where(e => e.OwnerId == _userId)
                         .Select(
                             e =>
                                 new TeacherListItem
                                 {
                                     TeacherId = e.TeacherId,
-                                    TeacherName = e.TeacherName,
+                                    TeacherName = e.LastName + e.FirstName,
+                                    //Department = (TeacherListItem.DepartmentName)e.Department,
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
@@ -55,6 +56,7 @@ namespace School.Services
                 return query.ToArray();
             }
         }
+
         public TeacherDetail GetTeacherById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -62,17 +64,40 @@ namespace School.Services
                 var entity =
                     ctx
                         .Teachers
-                        .Single(e => e.TeacherId == id && e.OwnerId == _userId);
+                        .Single(e => e.TeacherId == id);
                 return
                     new TeacherDetail
                     {
                         TeacherId = entity.TeacherId,
+
                         TeacherName = entity.TeacherName,
-                        //// need to add enums
+                        //TeacherName = entity.LastName + entity.FirstName,
+                        //Department = (TeacherDetail.DepartmentName)entity.Department,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
             }
+        }
+        public IEnumerable<TeacherListItem> GetAllTeacher()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Teachers
+                        .Select(
+                            e =>
+                                new TeacherListItem
+                                {
+                                    TeacherId = e.TeacherId,
+                                    TeacherName = e.LastName + e.FirstName,
+                                    //Department = (TeacherListItem.DepartmentName)e.Department,
+                                }
+                        );
+
+                return query.ToArray();
+            }
+
         }
 
         public bool UpdateTeacher (TeacherEdit model)
@@ -82,10 +107,11 @@ namespace School.Services
                 var entity =
                     ctx
                         .Teachers
-                        .Single(e => e.TeacherId == model.TeacherId && e.OwnerId == _userId);
+                        .Single(e => e.TeacherId == model.TeacherId);
 
-                entity.TeacherName = model.TeacherName;
-                /// need to add enums
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.Department = (Teacher.DepartmentName)model.Department;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
@@ -98,7 +124,7 @@ namespace School.Services
                 var entity =
                     ctx
                         .Teachers
-                        .Single(e => e.TeacherId == teacherId && e.OwnerId == _userId);
+                        .Single(e => e.TeacherId == teacherId);
 
                 ctx.Teachers.Remove(entity);
 
