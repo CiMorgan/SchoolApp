@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static School.Data.Teacher;
 
 namespace School.Models
 {
@@ -15,16 +16,6 @@ namespace School.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        public enum DepartmentName
-        {
-            English = 1,
-            Math,
-            Science,
-            SocialStudies,
-            WorldLanguages,
-            Art,
-            PhysicalEducation
-        }
         public DepartmentName Department { get; set; }
         public List<string> TeacherActivity { get; set; }
     }
