@@ -63,12 +63,6 @@ namespace School.Services
                         .Students
                         .Single(e => e.Id == id);
 
-                //List<string> cList = new List<string>();
-                //    foreach (Course course in entity.CourseList)
-                //    {
-                //        cList.Add(course.Name);
-                //    }
-
                 return
 
                     new StudentItems
@@ -76,7 +70,6 @@ namespace School.Services
                         StudentId = entity.Id,
                         StudentName = entity.LastName + entity.FirstName,
                         StudentGrade = entity.GradeLevel,
-                        //StudentCourses = cList
                     };
             }
         }

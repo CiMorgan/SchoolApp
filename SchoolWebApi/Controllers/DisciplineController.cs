@@ -11,9 +11,9 @@ using System.Web.Http;
 
 namespace SchoolWebApi.Controllers
 {
+    [Authorize]
     public class DisciplineController : ApiController
     {
-        [Authorize]
         public IHttpActionResult Get()
         {
             DisciplineService DisciplineService = CreateDisciplineService();

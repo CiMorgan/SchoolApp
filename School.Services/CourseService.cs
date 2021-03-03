@@ -20,6 +20,7 @@ namespace School.Services
         public bool CreateCourse(CourseCreate model)
         {
             var entity = new Course()
+
             {
                 Id = model.Id,
                 Name = model.Name,

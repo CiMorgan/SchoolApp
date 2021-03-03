@@ -26,7 +26,7 @@ namespace School.Services
                     TeacherId = model.TeacherId,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Department = (Teacher.DepartmentName)model.Department,
+                    Department = model.Department,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -48,7 +48,9 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    //Department = (TeacherListItem.DepartmentName)e.Department,
+
+                                    Department = e.Department,
+
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
@@ -70,9 +72,8 @@ namespace School.Services
                     {
                         TeacherId = entity.TeacherId,
 
-                        TeacherName = entity.TeacherName,
-                        //TeacherName = entity.LastName + entity.FirstName,
-                        //Department = (TeacherDetail.DepartmentName)entity.Department,
+                        TeacherName = entity.LastName + entity.FirstName,
+                        Department = entity.Department,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
@@ -91,7 +92,9 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    //Department = (TeacherListItem.DepartmentName)e.Department,
+
+                                    Department = (Teacher.DepartmentName)e.Department,
+
                                 }
                         );
 
