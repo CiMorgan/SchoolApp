@@ -91,7 +91,7 @@
     <Compile Include="Course.cs" />
     <Compile Include="Discipline.cs" />
     <Compile Include="IdentityModels.cs" />
-    </Compile>
+    
     <Compile Include="Migrations\202102260234481_Feb25Mig.cs" />
     <Compile Include="Migrations\202102260234481_Feb25Mig.Designer.cs">
       <DependentUpon>202102260234481_Feb25Mig.cs</DependentUpon>
