@@ -50,29 +50,29 @@ namespace School.Data
         //    public Course Course { get; set; }
         //}
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            {
-                modelBuilder
-                    .Conventions
-                    .Remove<PluralizingTableNameConvention>();
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    {
+        //        modelBuilder
+        //            .Conventions
+        //            .Remove<PluralizingTableNameConvention>();
 
-                modelBuilder
-                    .Configurations
-                    .Add(new IdentityUserLoginConfiguration())
-                    .Add(new IdentityUserRoleConfiguration());
+        //        modelBuilder
+        //            .Configurations
+        //            .Add(new IdentityUserLoginConfiguration())
+        //            .Add(new IdentityUserRoleConfiguration());
 
-                modelBuilder.Entity<Student>()
-                            .HasMany<Course>(s => s.CourseList)
-                            .WithMany(c => c.StudentList)
-                            .Map(sc =>
-                                    {
-                                        sc.MapLeftKey("StudentId");
-                                        sc.MapRightKey("CourseId");
-                                        sc.ToTable("StudentCourse");
-                                    });
-            }
-        }
+        //        modelBuilder.Entity<Student>()
+        //                    .HasMany<Course>(s => s.CourseList)
+        //                    .WithMany(c => c.StudentList)
+        //                    .Map(sc =>
+        //                            {
+        //                                sc.MapLeftKey("StudentId");
+        //                                sc.MapRightKey("CourseId");
+        //                                sc.ToTable("StudentCourse");
+        //                            });
+        //    }
+        //}
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {

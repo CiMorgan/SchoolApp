@@ -59,14 +59,15 @@ namespace SchoolWebApi.Controllers
             return Ok();
         }
         [HttpPut]
-        public IHttpActionResult AddStudentToCourse(List<int> model, int id)
+        [Route("api/Course/{id}/Student/")]
+        public IHttpActionResult AddStudentToCourse(int id, [FromBody]AddStudent model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateCourseService();
 
-            if (!service.AddStudentToCourse(model, id))
+            if (!service.AddStudentToCourse(id, model))
                 return InternalServerError();
 
             return Ok();
