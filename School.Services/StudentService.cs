@@ -63,14 +63,14 @@ namespace School.Services
                         .Students
                         .Single(e => e.Id == id);
               
-                //List<string> cList = new List<string>();
-                //if (entity.CourseList.Count != 0)
-                //{
-                //    foreach (Course course in entity.CourseList)
-                //    {
-                //        cList = cList.Add(course.Name);
-                //    }
-                //}
+                List<string> cList = new List<string>();
+                if (entity.CourseList.Count != 0)
+                {
+                    foreach (Course course in entity.CourseList)
+                    {
+                        cList.Append(course.Name);
+                    }
+                }
   
                 return
 
@@ -79,9 +79,7 @@ namespace School.Services
                         StudentId = entity.Id,
                         StudentName = entity.LastName + entity.FirstName,
                         StudentGrade = entity.GradeLevel,
-                  
- //                     StudentCourses = cList                    
-
+                        StudentCourses = cList                    
                     };
             }
         }
@@ -99,20 +97,20 @@ namespace School.Services
                 entity.LastName = model.LastName;
                 entity.GradeLevel = model.GradeLevel;
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
-        public void AddStudentToCourse(int studentId, int courseId)
-        {
-            using(var ctx = new ApplicationDbContext())
-            {
-                var foundStudent = ctx.Students.Single(s => s.Id == studentId);
-                var foundCourse = ctx.Courses.Single(c => c.Id == courseId);
-                //foundCourse.StudentList.Add(foundStudent);
-                var testing = ctx.SaveChanges();
-            }
+        //public void AddStudentToCourse(int studentId, int courseId)
+        //{
+        //    using(var ctx = new ApplicationDbContext())
+        //    {
+        //        var foundStudent = ctx.Students.Single(s => s.Id == studentId);
+        //        var foundCourse = ctx.Courses.Single(c => c.Id == courseId);
+        //        //foundCourse.StudentList.Add(foundStudent);
+        //        var testing = ctx.SaveChanges();
+        //    }
 
-        }
+        //}
         public bool DeleteStudent(int studentId)
         {
             using (var ctx = new ApplicationDbContext())

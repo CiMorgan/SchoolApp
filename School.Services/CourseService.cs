@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace School.Services
 {
@@ -61,25 +62,30 @@ namespace School.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var stList = new List<string>();
                 var entity =
                     ctx
                         .Courses
                         .Single(e => e.Id == id);
+                foreach (Student student in entity.StudentList)
+                {
+                    stList.Add(student.LastName);
+                }
+
                 return
-                    new CourseUpdate
-                    {
-                        CourseId = entity.Id,
-                        CourseName = entity.Name,
-                        CourseDepartment = entity.Department,
+                new CourseUpdate
+                {
+                    CourseId = entity.Id,
+                    CourseName = entity.Name,
+                    CourseDepartment = entity.Department,
 
-                        //CourseTeacher = entity.Teacher,
-                        //CourseStudent = entity.Student,
+                    //CourseTeacher = entity.Teacher,
+                    //CourseStudent = entity.Student,
 
-                        //CourseTeacher = entity.TeacherList,
-                      
-                        //CourseStudent = entity.StudentList,
+                    //CourseTeacher = entity.TeacherList,
 
-                    };
+                    CourseStudent = stList
+                };
             }
         }
 
@@ -96,7 +102,7 @@ namespace School.Services
                 entity.Name = model.CourseName;
                 entity.Department = model.CourseDepartment;
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
@@ -115,7 +121,7 @@ namespace School.Services
             }
         }
 
-        public bool AddStudentToCourse(AddStudent model, int id)
+        public bool AddStudentToCourse(int id, AddStudent model)
         {
             var stList = new AddStudent()
             {
