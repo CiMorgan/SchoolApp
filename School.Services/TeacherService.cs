@@ -70,13 +70,13 @@ namespace School.Services
                     {
                         TeacherId = entity.TeacherId,
                         TeacherName = entity.LastName + entity.FirstName,
-                        Department = entity.Department,
+                        Department =  entity.Department,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
             }
         }
-        public IEnumerable<TeacherListItem> GetAllTeacher()
+        public IEnumerable<TeacherListItem> GetAllTeachers()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -89,7 +89,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    Department = (Teacher.DepartmentName)e.Department,
+                                    Department = e.Department,
                                 }
                         );
 
@@ -109,7 +109,7 @@ namespace School.Services
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
-                entity.Department = (Teacher.DepartmentName)model.Department;
+                entity.Department = model.Department;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;

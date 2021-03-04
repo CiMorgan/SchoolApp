@@ -15,9 +15,14 @@ namespace School.Models
 
         [Display(Name = "Teacher Name")]
         public string TeacherName { get; set; }
+
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [Display(Name = "Department Name")]
         public DepartmentName Department { get; set; }
 
         [Display(Name = "Courses Taught")]
