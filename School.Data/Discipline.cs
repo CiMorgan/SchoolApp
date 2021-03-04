@@ -11,11 +11,10 @@ namespace School.Data
     {
         [Key]
         public int DisciplineId { get; set; }
-        public DateTimeOffset? ModifiedUtc { get; set; }
-        public DateTimeOffset CreatedUtc { get; set; }
-        //attribute on comment
         public string Comment { get; set; }
         public bool Expelled { get; set; }
+        public DateTimeOffset? ModifiedUtc { get; set; }
+        public DateTimeOffset CreatedUtc { get; set; }
         public enum TypeOfDiscipline
         {
             Detention = 1,
@@ -24,14 +23,13 @@ namespace School.Data
             Expulsion
         }
         public TypeOfDiscipline DisciplineType { get; set; }
+      
+        [ForeignKey("DisciplineList")]
+        public virtual Student DisciplineList { get; set; }
         public virtual ICollection<Student> StudentList { get; set; }
-
-        //[ForeignKey("DisciplineList")]
-        //public virtual Student DisciplineList { get; set; }
-
-        //public Discipline()
-        //{
-        //    StudentList = new HashSet<Student>();
-        //}
+        public Discipline()
+        {
+            StudentList = new HashSet<Student>();
+        }
     }
 }

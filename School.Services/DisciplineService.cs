@@ -23,7 +23,7 @@ namespace School.Services
                 new Discipline()
                 {
                     DisciplineId = model.DisciplineId,
-                    DisciplineType = (Discipline.TypeOfDiscipline)model.DisciplineType,
+                    DisciplineType = model.DisciplineType,
                     Comment = model.Comment,
                     CreatedUtc = DateTimeOffset.Now
                 };
@@ -46,7 +46,7 @@ namespace School.Services
                                  new DisciplineListItem
                                  {
                                      DisciplineId = e.DisciplineId,
-
+                                     DisciplineType = e.DisciplineType,
                                      Comment = e.Comment,
                                      CreatedUtc = e.CreatedUtc,
                                      ModifiedUtc = e.ModifiedUtc,
@@ -68,9 +68,7 @@ namespace School.Services
                     new DisciplineDetail
                     {
                         DisciplineId = entity.DisciplineId,
-
-                        DisciplineType = (Discipline.TypeOfDiscipline)entity.DisciplineType,
-
+                        DisciplineType = entity.DisciplineType,
                         Comment = entity.Comment,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
@@ -89,9 +87,7 @@ namespace School.Services
                                 new DisciplineListItem
                                 {
                                     DisciplineId = e.DisciplineId,
-
-                                    DisciplineType = (Discipline.TypeOfDiscipline)e.DisciplineType,
-
+                                    DisciplineType = e.DisciplineType,
                                     Comment = e.Comment,
                                     CreatedUtc = e.CreatedUtc,
                                     ModifiedUtc = e.ModifiedUtc,
@@ -111,7 +107,7 @@ namespace School.Services
                         .Disciplines
                         .Single(e => e.DisciplineId == model.DisciplineId);
 
-                entity.DisciplineType = (Discipline.TypeOfDiscipline)model.DisciplineType;
+                entity.DisciplineType = model.DisciplineType;
                 entity.Comment = model.Comment;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 

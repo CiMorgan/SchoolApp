@@ -34,9 +34,9 @@ namespace School.Data
         public NameOfActivity Name { get; set; }
         public Season Duration { get; set; }
 
-        //[ForeignKey("Teacher")]
-        //public int TeacherId { get; set; }
-        //public virtual Teacher LeadTeacher { get; set; }
+        [ForeignKey("LeadTeacher")]
+        public int TeacherId { get; set; }
+        public virtual Teacher LeadTeacher { get; set; }
 
         public virtual ICollection<Student> StudentList { get; set; }
 

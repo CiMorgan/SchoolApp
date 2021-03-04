@@ -27,19 +27,13 @@ namespace School.Data
         [Required]
         public NameOfDepartment Department { get; set; }
 
-        //public virtual ICollection<Teacher> TeacherList { get; set; }
-        //public virtual ICollection<Student> StudentList { get; set; }
+        public virtual ICollection<Teacher> TeacherList { get; set; }
+        public virtual ICollection<Student> StudentList { get; set; }
 
-        //public Course()
-        //{
-        //    TeacherList = new HashSet<Teacher>();
-        //    StudentList = new HashSet<Student>();
-        //}
-
-
-
-        /* not sure if we will use this one
-        public string Supplies { get; set; }
-        */
+        public Course()
+        {
+            TeacherList = new HashSet<Teacher>();
+            StudentList = new HashSet<Student>();
+        }
     }
 }
