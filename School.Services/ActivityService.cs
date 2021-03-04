@@ -48,7 +48,7 @@ namespace School.Services
                             e =>
                                 new ActivityUpdate
                                 {
-                                    ActivityId = e.Id,
+                                    //ActivityId = e.Id,
                                     //ActivityName = e.Name
                                 }
                         );

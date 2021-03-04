@@ -40,6 +40,16 @@ namespace School.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Discipline> Disciplines { get; set; }
         public DbSet<Activity> Activities { get; set; }
+
+        //public class StudentCourse
+        //{
+        //    public int StudentId { get; set; }
+        //    public Student Student { get; set; }
+
+        //    public int CourseId { get; set; }
+        //    public Course Course { get; set; }
+        //}
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             {
@@ -51,6 +61,16 @@ namespace School.Data
                     .Configurations
                     .Add(new IdentityUserLoginConfiguration())
                     .Add(new IdentityUserRoleConfiguration());
+
+                modelBuilder.Entity<Student>()
+                            .HasMany<Course>(s => s.CourseList)
+                            .WithMany(c => c.StudentList)
+                            .Map(sc =>
+                                    {
+                                        sc.MapLeftKey("StudentId");
+                                        sc.MapRightKey("CourseId");
+                                        sc.ToTable("StudentCourse");
+                                    });
             }
         }
     }

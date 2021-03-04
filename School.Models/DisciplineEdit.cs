@@ -12,6 +12,7 @@ namespace School.Models
     {
         public int DisciplineId { get; set; }
         public string Comment { get; set; }
+
         public TypeOfDiscipline DisciplineType { get; set; }
 
         [Display(Name = "Created")]

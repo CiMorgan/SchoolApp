@@ -16,6 +16,7 @@ namespace School.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+
         public DepartmentName Department { get; set; }
         public List<string> TeacherActivity { get; set; }
     }
