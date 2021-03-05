@@ -59,7 +59,7 @@ namespace School.Services
 
         public ActivityUpdate GetActivityById(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext()) 
             {
                 var entity =
                     ctx
