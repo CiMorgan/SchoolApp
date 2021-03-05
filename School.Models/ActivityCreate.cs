@@ -20,7 +20,8 @@ namespace School.Models
 
         public int TeacherId { get; set; }
 
-        public List<Teacher> LeadTeacher { get; set; }
+        //public List<Teacher> LeadTeacher { get; set; }
+        public Teacher LeadTeacher { get; set; }
 
         public ICollection<Student> StudentList { get; set; }
 

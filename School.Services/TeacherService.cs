@@ -48,7 +48,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    Department = Enum.GetName(typeof(DepartmentName), e.Department)
+                                    //Department = Enum.GetName(typeof(DepartmentName), e.Department)
                                 }
                         );
 
@@ -60,6 +60,7 @@ namespace School.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var teacherCourseList = new List<string>();
+                var teacherActivityList = new List<string>();
                 var entity =
                     ctx
                         .Teachers
@@ -68,12 +69,19 @@ namespace School.Services
                 {
                     teacherCourseList.Add(course.Name);
                 }
+                var EC =
+                    ctx.Activities.Single(f => f.TeacherId == id);
+ 
+                    teacherActivityList.Add(EC.Name.ToString());
+  
                 return
                     new TeacherDetail
                     {
                         TeacherId = entity.TeacherId,
                         TeacherName = entity.LastName + entity.FirstName,
-                        Department = Enum.GetName(typeof(DepartmentName), entity.Department)
+                        Department = Enum.GetName(typeof(DepartmentName), entity.Department),
+                        TeacherCourseList = teacherCourseList,
+                        TeacherActivityList = teacherActivityList
                     };
             }
         }

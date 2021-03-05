@@ -26,14 +26,14 @@ namespace School.Services
                 Name = model.Name,
                 Department = model.Department,
                 //TeacherList = model.TeacherList,
-                //StudentList = model.StudentList,
+                //StudentList = model.StudentList
 
             };
             //will have to fix identity models "courses" in class
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Courses.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
@@ -63,6 +63,7 @@ namespace School.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var stList = new List<string>();
+                var tList = new List<string>();
                 var entity =
                     ctx
                         .Courses
@@ -72,6 +73,11 @@ namespace School.Services
                     stList.Add(student.LastName);
                 }
 
+                foreach (Teacher teacher in entity.TeacherList)
+                {
+                    tList.Add(teacher.LastName);
+                }
+
                 return
                 new CourseUpdate
                 {
@@ -79,9 +85,7 @@ namespace School.Services
                     CourseName = entity.Name,
                     CourseDepartment = entity.Department,
 
-                    //CourseTeacher = entity.Teacher,
-
-                    //CourseTeacher = entity.TeacherList,
+                    CourseTeacher = tList, 
 
                     CourseStudent = stList
                 };
