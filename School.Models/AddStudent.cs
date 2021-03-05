@@ -10,5 +10,7 @@ namespace School.Models
     {
         public List<int> StudentCourseList { get; set; }
         //public int StudentCourseList { get; set; }
+
+        public List<int> StudentActivityList { get; set; }
     }
 }
