@@ -80,7 +80,6 @@ namespace School.Services
                     CourseDepartment = entity.Department,
 
                     //CourseTeacher = entity.Teacher,
-                    //CourseStudent = entity.Student,
 
                     //CourseTeacher = entity.TeacherList,
 
