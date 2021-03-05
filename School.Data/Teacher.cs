@@ -34,9 +34,6 @@ namespace School.Data
             PhysicalEducation
         }
         public DepartmentName Department { get; set; }
-
-        [ForeignKey("TeacherList")]
-        public virtual Teacher TeacherList { get; set; }
         public virtual ICollection<Course> CourseList { get; set; }
         public Teacher()
         {

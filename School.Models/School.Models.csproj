@@ -57,7 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddActivityTeacher.cs" />
+    <Compile Include="AddDiscipline.cs" />
     <Compile Include="AddStudent.cs" />
+    <Compile Include="AddTeacher.cs" />
     <Compile Include="DisciplineCreate.cs" />
     <Compile Include="DisciplineDetail.cs" />
     <Compile Include="DisciplineEdit.cs" />

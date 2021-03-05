@@ -60,10 +60,15 @@ namespace School.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var disciplineStudentList = new List<string>();
                 var entity =
                     ctx
                         .Disciplines
                         .Single(e => e.DisciplineId == id);
+                foreach (Student student in entity.StudentList)
+                {
+                    disciplineStudentList.Add(student.FirstName + student.LastName);
+                }
                 return
                     new DisciplineDetail
                     {
@@ -126,6 +131,27 @@ namespace School.Services
                 ctx.Disciplines.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool AddDisciplineToStudent(int id, AddDiscipline model)
+        {
+            var disciplineList = new AddDiscipline()
+            {
+                StudentDisciplineList = model.StudentDisciplineList
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Disciplines
+                        .Single(e => e.DisciplineId == id);
+                foreach (int disciplineId in disciplineList.StudentDisciplineList)
+                {
+                    var student = ctx
+                        .Students.Single(s => s.Id == disciplineId);
+                    entity.StudentList.Add(student);
+                }
+                return ctx.SaveChanges() > 0;
             }
         }
     }

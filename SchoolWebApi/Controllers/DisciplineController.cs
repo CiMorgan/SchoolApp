@@ -58,6 +58,20 @@ namespace SchoolWebApi.Controllers
 
             return Ok();
         }
+        [HttpPut]
+        [Route("api/Discipline/{id}/Student/")]
+        public IHttpActionResult AddDisciplineToStudent(int id, [FromBody] AddDiscipline model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateDisciplineService();
+
+            if (!service.AddDisciplineToStudent(id, model))
+                return InternalServerError();
+
+            return Ok();
+        }
         public IHttpActionResult Delete(int id)
         {
             var service = CreateDisciplineService();

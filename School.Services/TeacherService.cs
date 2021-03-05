@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static School.Data.Teacher;
 
 namespace School.Services
 {
@@ -17,7 +18,6 @@ namespace School.Services
         {
             _userId = userId;
         }
-
         public bool CreateTeacher(TeacherCreate model)
         {
             var entity =
@@ -48,34 +48,32 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-
-                                    Department = e.Department,
-
-                                    CreatedUtc = e.CreatedUtc
+                                    Department = Enum.GetName(typeof(DepartmentName), e.Department)
                                 }
                         );
 
                 return query.ToArray();
             }
         }
-
         public TeacherDetail GetTeacherById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var teacherCourseList = new List<string>();
                 var entity =
                     ctx
                         .Teachers
                         .Single(e => e.TeacherId == id);
+                foreach (Course course in entity.CourseList)
+                {
+                    teacherCourseList.Add(course.Name);
+                }
                 return
                     new TeacherDetail
                     {
                         TeacherId = entity.TeacherId,
-
                         TeacherName = entity.LastName + entity.FirstName,
-                        Department =  entity.Department,
-                        CreatedUtc = entity.CreatedUtc,
-                        ModifiedUtc = entity.ModifiedUtc
+                        Department = Enum.GetName(typeof(DepartmentName), entity.Department)
                     };
             }
         }
@@ -92,7 +90,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    Department = e.Department,
+                                    Department = Enum.GetName(typeof(DepartmentName), e.Department),
                                 }
                         );
 
@@ -100,8 +98,7 @@ namespace School.Services
             }
 
         }
-
-        public bool UpdateTeacher (TeacherEdit model)
+        public bool UpdateTeacher(TeacherEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -132,5 +129,47 @@ namespace School.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        public bool AddTeacherToCourse(int id, AddTeacher model)
+        {
+            var courseList = new AddTeacher()
+            {
+                TeacherCourseList = model.TeacherCourseList
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Courses
+                        .Single(e => e.Id == id);
+                foreach (int teacherId in courseList.TeacherCourseList)
+                {
+                    var teacher = ctx
+                        .Teachers.Single(s => s.TeacherId == teacherId);
+                    entity.TeacherList.Add(teacher);
+                }
+                return ctx.SaveChanges() > 0;
+            }
+        }
+        //public bool AddTeacherToActivity(int id, AddTeacher model)
+        //{
+        //    var activityList = new AddTeacher()
+        //    {
+        //        TeacherActivityList = model.TeacherActivityList
+        //    };
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity =
+        //            ctx
+        //                .Activities
+        //                .Single(e => e.Id == id);
+        //        foreach (int activityId in activityList.TeacherActivityList)
+        //        {
+        //            var activity = ctx
+        //                .Activities.Single(s => s.Id == activityId);
+        //            entity.TeacherList.Add(teacher);
+        //        }
+        //        return ctx.SaveChanges() > 0;
+        //    }
     }
 }
+
