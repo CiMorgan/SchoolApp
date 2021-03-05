@@ -59,7 +59,7 @@ namespace School.Services
 
         public ActivityUpdate GetActivityById(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext()) 
             {
                 var entity =
                     ctx
@@ -110,6 +110,28 @@ namespace School.Services
                 ctx.Activities.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool AddStudentToActivity(int id, AddStudent model)
+        {
+            var stList = new AddStudent()
+            {
+                StudentActivityList = model.StudentActivityList
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Activities
+                        .Single(e => e.Id == id);
+                foreach (int studentId in stList.StudentActivityList)
+                {
+                    var student = ctx
+                        .Students.Single(s => s.Id == studentId);
+                    entity.StudentList.Add(student);
+                }
+                return ctx.SaveChanges() > 0;
             }
         }
     }
