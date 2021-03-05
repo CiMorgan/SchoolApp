@@ -9,5 +9,6 @@ namespace School.Models
     public class AddTeacher
     {
         public List<int> TeacherCourseList { get; set; }
+        public List<int> TeacherActivityList { get; set; }
     }
 }
