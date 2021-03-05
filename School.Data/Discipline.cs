@@ -23,9 +23,7 @@ namespace School.Data
             Expulsion
         }
         public TypeOfDiscipline DisciplineType { get; set; }
-      
-        [ForeignKey("DisciplineList")]
-        public virtual Student DisciplineList { get; set; }
+   
         public virtual ICollection<Student> StudentList { get; set; }
         public Discipline()
         {
