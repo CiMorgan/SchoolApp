@@ -59,6 +59,20 @@ namespace SchoolWebApi.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        [Route("api/Activity/{id}/Student")]
+        public IHttpActionResult AddStudentToActivity(int id, [FromBody] AddStudent model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateActivityService();
+
+            if (!service.AddStudentToActivity(id, model))
+                return InternalServerError();
+
+            return Ok();
+        }
         public IHttpActionResult Delete(int id)
         {
             var service = CreateActivityService();
