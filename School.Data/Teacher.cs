@@ -34,7 +34,6 @@ namespace School.Data
             PhysicalEducation
         }
         public DepartmentName Department { get; set; }
-
         public virtual ICollection<Course> CourseList { get; set; }
         public Teacher()
         {

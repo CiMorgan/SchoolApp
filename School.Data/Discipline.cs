@@ -23,7 +23,6 @@ namespace School.Data
             Expulsion
         }
         public TypeOfDiscipline DisciplineType { get; set; }
-   
         public virtual ICollection<Student> StudentList { get; set; }
         public Discipline()
         {

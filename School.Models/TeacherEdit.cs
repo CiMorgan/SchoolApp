@@ -13,9 +13,6 @@ namespace School.Models
         [Display(Name = "ID")]
         public int TeacherId { get; set; }
 
-        [Display(Name = "Teacher Name")]
-        public string TeacherName { get; set; }
-
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
