@@ -45,7 +45,7 @@ namespace School.Services
                                 new StudentItems
                                 {
                                     StudentId = e.Id,
-                                    StudentName = e.LastName + e.FirstName,
+                                    StudentName = e.LastName + "," + " " + e.FirstName,
                                     StudentGrade = e.GradeLevel
                                 }
                         );  
@@ -68,7 +68,7 @@ namespace School.Services
                 {
                     foreach (Course course in entity.CourseList)
                     {
-                        cList.Append(course.Name);
+                        cList.Add(course.Name);
                     }
                 }
   
@@ -83,6 +83,7 @@ namespace School.Services
                     };
             }
         }
+
         public bool UpdateStudent(StudentUpdate model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -92,7 +93,6 @@ namespace School.Services
                         .Students
                         .Single(e => e.Id == model.Id);
 
-                entity.Id = model.Id;
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
                 entity.GradeLevel = model.GradeLevel;
