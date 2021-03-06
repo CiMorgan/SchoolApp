@@ -12,8 +12,11 @@ namespace School.Models
     {
         [Display(Name = "ID")]
         public int DisciplineId { get; set; }
+        public string StudentName { get; set; }
+        public string DisciplineType { get; set; }
 
-        public TypeOfDiscipline DisciplineType { get; set; }
+        [Display(Name = "Expelled")]
+        public bool Expelled { get; set; }
 
         [Display(Name = "Comment")]
         public string Comment { get; set; }

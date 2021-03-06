@@ -11,10 +11,10 @@ namespace School.Models
     public class DisciplineDetail
     {
         public int DisciplineId { get; set; }
+        public string StudentName { get; set; }
         public string Comment { get; set; }
-
-        public TypeOfDiscipline DisciplineType { get; set; }
-
+        public string DisciplineType { get; set; }
+        public bool Expelled { get; set; }
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
 

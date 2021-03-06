@@ -99,6 +99,10 @@
     <Compile Include="Migrations\202103050039224_4MAR21x2.designer.cs">
       <DependentUpon>202103050039224_4MAR21x2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103060404312_March4.cs" />
+    <Compile Include="Migrations\202103060404312_March4.designer.cs">
+      <DependentUpon>202103060404312_March4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103050039224_4MAR21x2.resx">
       <DependentUpon>202103050039224_4MAR21x2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103060404312_March4.resx">
+      <DependentUpon>202103060404312_March4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

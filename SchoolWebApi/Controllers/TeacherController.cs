@@ -40,8 +40,8 @@ namespace SchoolWebApi.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            TeacherService noteService = CreateTeacherService();
-            var note = noteService.GetTeacherById(id);
+            TeacherService teacherService = CreateTeacherService();
+            var note = teacherService.GetTeacherById(id);
             return Ok(note);
         }
 

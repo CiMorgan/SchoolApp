@@ -12,14 +12,12 @@ namespace School.Data
         [Key]
         public int TeacherId { get; set; }
 
-        //Teacher name is used in services only 
-        public string TeacherName { get; set; }
-
         [Required]
         public string FirstName { get; set; }
 
         [Required]
         public string LastName { get; set; }
+
         public DateTimeOffset CreatedUtc { get; set; }
         public DateTimeOffset? ModifiedUtc { get; set; }
 

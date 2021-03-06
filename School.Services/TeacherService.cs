@@ -27,6 +27,7 @@ namespace School.Services
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Department = model.Department,
+                    CreatedUtc = DateTimeOffset.Now
                 };
 
             using (var ctx = new ApplicationDbContext())
