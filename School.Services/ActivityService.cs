@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static School.Data.Activity;
 
 namespace School.Services
 {
@@ -24,16 +25,16 @@ namespace School.Services
                 Id = model.Id,
                 Name = model.Name,
                 Duration = model.Duration,
-                //TeacherId = model.TeacherId,
-                //LeadTeacher = model.LeadTeacher,
-                StudentList = model.StudentList,
+                TeacherId = model.TeacherId,
+                LeadTeacher = model.LeadTeacher,
+                //StudentList = model.StudentList,
 
             };
             //will have to fix identity models "Activity" in class
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Activities.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
@@ -48,8 +49,10 @@ namespace School.Services
                             e =>
                                 new ActivityUpdate
                                 {
-                                    //ActivityId = e.Id,
-                                    //ActivityName = e.Name
+                                    ActivityId = e.Id,
+                                    ActivityName = e.Name,
+                                    ActivityDuration =  e.Duration,
+                                    ActivityLeadTeacher = e.LeadTeacher.LastName
                                 }
                         );
 
@@ -69,9 +72,9 @@ namespace School.Services
                     new ActivityUpdate
                     {
                         ActivityId = entity.Id,
-                        //ActivityName = entity.Name,
-                        //ActivityDuration = entity.Duration,
-                        //ActivityTeacherId = entity.TeacherId
+                        ActivityName = entity.Name,
+                        ActivityDuration = entity.Duration,
+                        ActivityTeacherId = entity.TeacherId
                         //LeadTeacher = entity.LeadTeacher,
                         //StudentList = entity.StudentList,
 
@@ -93,9 +96,7 @@ namespace School.Services
                             //entity.Duration = model.ActivityDuration;
 
                 return ctx.SaveChanges() == 1;
-
             }
-
         }
 
         public bool DeleteActivity(int activityId)

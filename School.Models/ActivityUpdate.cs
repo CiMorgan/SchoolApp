@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static School.Data.Activity;
 
 namespace School.Models
 {
@@ -13,16 +14,18 @@ namespace School.Models
         public int ActivityId { get; set; }
 
         [Display(Name = "Name")]
-        public int ActivityName { get; set; }
+        public NameOfActivity ActivityName { get; set; }
+      
 
         [Display(Name = "Duration")]
-        public int ActivityDuration { get; set; }
+        public Season ActivityDuration { get; set; }
+        
 
         [Display(Name = "TeacherId")]
         public int ActivityTeacherId { get; set; }
 
         [Display(Name = "LeadTeacher")]
-        public int ActivityLeadTeacher { get; set; }
+        public string ActivityLeadTeacher { get; set; }
 
         [Display(Name = "StudentList")]
         public int ActivityStudentList { get; set; }
