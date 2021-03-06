@@ -27,7 +27,7 @@ namespace School.Services
                 Duration = model.Duration,
                 TeacherId = model.TeacherId,
                 LeadTeacher = model.LeadTeacher,
-                //StudentList = model.StudentList,
+                StudentList = model.StudentList,
 
             };
             //will have to fix identity models "Activity" in class
@@ -38,7 +38,7 @@ namespace School.Services
             }
         }
 
-        public IEnumerable<ActivityUpdate> GetAllActivity()
+        public IEnumerable<ActivityItems> GetAllActivity()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -47,38 +47,49 @@ namespace School.Services
                         .Activities
                         .Select(
                             e =>
-                                new ActivityUpdate
+                                new ActivityItems
                                 {
-                                    ActivityId = e.Id,
-                                    ActivityName = e.Name,
-                                    ActivityDuration =  e.Duration,
-                                    ActivityLeadTeacher = e.LeadTeacher.LastName
+                                    Id = e.Id,
+                                    ActivityName = e.Name.ToString(),
+                                    Duration = e.Duration.ToString()
                                 }
                         );
-
                 return query.ToArray();
             }
         }
 
-        public ActivityUpdate GetActivityById(int id)
+        public ActivityItemsDetail GetActivityById(int id)
         {
-            using (var ctx = new ApplicationDbContext()) 
+            using (var ctx = new ApplicationDbContext())
             {
+                var stList = new List<string>();
+
                 var entity =
                     ctx
                         .Activities
                         .Single(e => e.Id == id);
-                return
-                    new ActivityUpdate
-                    {
-                        ActivityId = entity.Id,
-                        ActivityName = entity.Name,
-                        ActivityDuration = entity.Duration,
-                        ActivityTeacherId = entity.TeacherId
-                        //LeadTeacher = entity.LeadTeacher,
-                        //StudentList = entity.StudentList,
 
-                    };
+                if (entity.StudentList.Count != 0)
+                {
+                    foreach (Student student in entity.StudentList)
+                    {
+                        stList.Add(student.LastName);
+                    }
+                }
+                else
+                {
+                    string NoStudent = "No student in activity";
+                    stList.Add(NoStudent);
+                }
+                return
+                new ActivityItemsDetail
+                {
+                    Id = entity.Id,
+                    ActivityName = entity.Name.ToString(),
+                    LeadTeacher = entity.LeadTeacher.LastName,
+                    Duration = entity.Duration.ToString(),
+                    StudentList = stList
+                };
             }
         }
 
@@ -91,13 +102,54 @@ namespace School.Services
                         .Activities
                         .Single(e => e.Id == model.ActivityId);
 
-                            entity.Id = model.ActivityId;
-                            //entity.Name = model.ActivityName;
-                            //entity.Duration = model.ActivityDuration;
-
-                return ctx.SaveChanges() == 1;
+                entity.Id = model.ActivityId;
+                entity.Name = model.ActivityName;
+                entity.Duration = model.ActivityDuration;
+                entity.TeacherId = model.ActivityTeacherId;
+                return ctx.SaveChanges() > 0;
             }
         }
+
+        //public ActivityUpdate GetActivityById(int id)
+        //{
+        //    using (var ctx = new ApplicationDbContext()) 
+        //    {
+        //        var entity =
+        //            ctx
+        //                .Activities
+        //                .Single(e => e.Id == id);
+        //        return
+        //            new ActivityUpdate
+        //            {
+        //                ActivityId = entity.Id,
+        //                ActivityName = entity.Name,
+        //                ActivityDuration = entity.Duration,
+        //                ActivityTeacherId = entity.TeacherId,
+        //                ActivityLeadTeacher = entity.LeadTeacher,
+        //                ActivityStudentList = entity.StudentList
+
+        //            };
+        //    }
+        //}
+
+        //public bool UpdateActivity(ActivityUpdate model)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var stList = new List<string>();
+        //        var entity =
+        //            ctx
+        //                .Activities
+        //                .Single(e => e.Id == model.ActivityId);
+
+        //                    entity.Id = model.ActivityId,
+        //                    entity.Name = model.ActivityName,
+        //                    entity.Duration = model.ActivityDuration,
+                            
+
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
 
         public bool DeleteActivity(int activityId)
         {
@@ -131,6 +183,27 @@ namespace School.Services
                     var student = ctx
                         .Students.Single(s => s.Id == studentId);
                     entity.StudentList.Add(student);
+                }
+                return ctx.SaveChanges() > 0;
+            }
+        }
+        public bool AddTeacherToActivity(int id, AddTeacher model)
+        {
+            var teachList = new AddTeacher()
+            {
+                TeacherActivityList = model.TeacherActivityList
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Activities
+                        .Single(e => e.Id == id);
+                foreach (int Id in teachList.TeacherActivityList)
+                {
+                    var teacher = ctx
+                        .Teachers.Single(t => t.TeacherId == Id);
+                    entity.LeadTeacher = teacher;
                 }
                 return ctx.SaveChanges() > 0;
             }

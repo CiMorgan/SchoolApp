@@ -48,8 +48,8 @@ namespace School.Services
                                 new TeacherListItem
                                 {
                                     TeacherId = e.TeacherId,
-                                    TeacherName = e.LastName + e.FirstName,
-                                    Department = Enum.GetName(typeof(DepartmentName), e.Department)
+                                    TeacherName = e.LastName + " " + e.FirstName,
+                                    Department = e.Department.ToString()
                                 }
                         );
 
@@ -79,10 +79,8 @@ namespace School.Services
                     new TeacherDetail
                     {
                         TeacherId = entity.TeacherId,
-                        TeacherName = entity.LastName + entity.FirstName,
-                        Department = Enum.GetName(typeof(DepartmentName), entity.Department),
-                        TeacherCourseList = teacherCourseList,
-                        TeacherActivityList = teacherActivityList
+                        TeacherName = entity.LastName + " " + entity.FirstName,
+                        Department = Enum.GetName(typeof(DepartmentName), entity.Department,
                     };
             }
         }
@@ -98,7 +96,7 @@ namespace School.Services
                                 new TeacherListItem
                                 {
                                     TeacherId = e.TeacherId,
-                                    TeacherName = e.LastName + e.FirstName,
+                                    TeacherName = e.LastName + " " + e.FirstName,
                                     Department = Enum.GetName(typeof(DepartmentName), e.Department),
                                 }
                         );
