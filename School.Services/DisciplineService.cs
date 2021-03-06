@@ -44,13 +44,14 @@ namespace School.Services
                 var query =
                     ctx
                         .Disciplines
+                        //.AsEnumerable()
                         .Select(
                             e =>
                                 new DisciplineListItem
                                 {
                                     StudentName = (e.Student.FirstName + " " + e.Student.LastName),
                                     DisciplineId = e.DisciplineId,
-                                    DisciplineType = Enum.GetName(typeof(TypeOfDiscipline), e.DisciplineType),
+                                    DisciplineType = e.DisciplineType.ToString() ,
                                     Expelled = e.Expelled,
                                     Comment = e.Comment,
                                     CreatedUtc = e.CreatedUtc,
@@ -58,8 +59,8 @@ namespace School.Services
                                 }
                         );
 
-                 return query.ToArray();
-             }
+                return query.ToArray();
+            }
          }
         public DisciplineDetail GetDisciplineById(int id)
         {
