@@ -19,5 +19,6 @@ namespace School.Models
 
         public DepartmentName Department { get; set; }
         public List<string> TeacherActivity { get; set; }
+        public List<string> TeacherCourse { get; set; }
     }
 }
