@@ -1,4 +1,5 @@
-﻿using System;
+﻿using School.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -25,9 +26,9 @@ namespace School.Models
         public int ActivityTeacherId { get; set; }
 
         [Display(Name = "LeadTeacher")]
-        public string ActivityLeadTeacher { get; set; }
+        public Teacher ActivityLeadTeacher { get; set; }
 
-        [Display(Name = "StudentList")]
-        public int ActivityStudentList { get; set; }
+        //[Display(Name = "StudentList")]
+        //public List<string> ActivityStudentList { get; set; }
     }
 }

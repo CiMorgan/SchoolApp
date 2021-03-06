@@ -77,7 +77,7 @@ namespace School.Services
                 {
                     foreach (Activity activity in entity.ActivityList)
                     {
-                        aList.Add(Enum.GetName(typeof(NameOfActivity), entity.ActivityList));
+                        aList.Add(entity.ActivityList.ToString());
                     }
                 }
 
@@ -88,7 +88,8 @@ namespace School.Services
                         StudentId = entity.Id,
                         StudentName = entity.LastName + "," + " " + entity.FirstName,
                         StudentGrade = entity.GradeLevel,
-                        StudentCourses = cList                    
+                        StudentCourses = cList   
+                        
                     };
             }
         }
