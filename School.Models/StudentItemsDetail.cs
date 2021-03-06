@@ -21,7 +21,7 @@ namespace School.Models
         public List<string> StudentCourses { get; set; }
         [Display(Name = "Activities")]
         public List<string> StudentActivities { get; set; }
-        [Display(Name = "Discipline")]
-        public List<Discipline> StudentDiscipline { get; set; }
+        //[Display(Name = "Discipline")]
+        //public List<string> StudentDiscipline { get; set; }
     }
 }

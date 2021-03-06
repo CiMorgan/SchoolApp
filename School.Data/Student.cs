@@ -28,7 +28,7 @@ namespace School.Data
         {
             ActivityList = new HashSet<Activity>();
             CourseList = new HashSet<Course>();
-            DisciplineList = new HashSet<Discipline>();
+            //DisciplineList = new HashSet<Discipline>();
         }
     }
 }

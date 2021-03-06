@@ -80,7 +80,7 @@ namespace School.Services
                     {
                         TeacherId = entity.TeacherId,
                         TeacherName = entity.LastName + " " + entity.FirstName,
-                        Department = Enum.GetName(typeof(DepartmentName), entity.Department,
+                        Department = Enum.GetName(typeof(DepartmentName), entity.Department)
                     };
             }
         }

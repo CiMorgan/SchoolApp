@@ -53,8 +53,8 @@ namespace School.Services
 
                 return query.ToArray();
             }
-
         }
+
         public StudentItemsDetail GetStudentById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -77,10 +77,19 @@ namespace School.Services
                 {
                     foreach (Activity activity in entity.ActivityList)
                     {
-                        aList.Add(entity.ActivityList.ToString());
+                        string act = activity.Name.ToString();
+                        aList.Add(activity.Name.ToString());
                     }
                 }
-
+                //List<string> dList = new List<string>();
+                //if (entity.DisciplineList.ToList().Count != 0)
+                //{
+                //    foreach (Discipline discipline in entity.DisciplineList)
+                //    {
+                //        string trouble = discipline.DisciplineType.ToString();
+                //        dList.Add("test");
+                //    }
+                //}
                 return
 
                     new StudentItemsDetail
@@ -88,8 +97,9 @@ namespace School.Services
                         StudentId = entity.Id,
                         StudentName = entity.LastName + "," + " " + entity.FirstName,
                         StudentGrade = entity.GradeLevel,
-                        StudentCourses = cList   
-                        
+                        StudentCourses = cList,
+                        StudentActivities = aList
+                        //StudentDiscipline = dList
                     };
             }
         }

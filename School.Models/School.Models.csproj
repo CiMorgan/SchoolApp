@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityItems.cs" />
+    <Compile Include="CourseItems.cs" />
+    <Compile Include="CourseItemsDetail.cs" />
     <Compile Include="AddDiscipline.cs" />
     <Compile Include="AddStudent.cs" />
     <Compile Include="AddTeacher.cs" />
