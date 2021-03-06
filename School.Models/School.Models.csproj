@@ -64,6 +64,7 @@
     <Compile Include="DisciplineDetail.cs" />
     <Compile Include="DisciplineEdit.cs" />
     <Compile Include="DisciplineListItem.cs" />
+    <Compile Include="StudentItemsDetail.cs" />
     <Compile Include="TeacherCreate.cs" />
     <Compile Include="TeacherDetail.cs" />
     <Compile Include="TeacherEdit.cs" />

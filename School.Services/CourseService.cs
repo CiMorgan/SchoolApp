@@ -26,14 +26,14 @@ namespace School.Services
                 Name = model.Name,
                 Department = model.Department,
                 //TeacherList = model.TeacherList,
-                //StudentList = model.StudentList,
+                //StudentList = model.StudentList
 
             };
             //will have to fix identity models "courses" in class
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Courses.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
@@ -63,6 +63,7 @@ namespace School.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var stList = new List<string>();
+                var teachList = new List<string>();
                 var entity =
                     ctx
                         .Courses
@@ -72,17 +73,18 @@ namespace School.Services
                     stList.Add(student.LastName);
                 }
 
+                foreach (Teacher teacher in entity.TeacherList)
+                {
+                    teachList.Add(teacher.LastName);
+                }
+
                 return
                 new CourseUpdate
                 {
                     CourseId = entity.Id,
                     CourseName = entity.Name,
                     CourseDepartment = entity.Department,
-
-                    //CourseTeacher = entity.Teacher,
-
-                    //CourseTeacher = entity.TeacherList,
-
+                    CourseTeacher = teachList, 
                     CourseStudent = stList
                 };
             }
@@ -137,6 +139,28 @@ namespace School.Services
                     var student = ctx
                         .Students.Single(s => s.Id == studentId);
                     entity.StudentList.Add(student);
+                }
+                return ctx.SaveChanges() > 0;
+            }
+        }
+
+        public bool AddTeacherToCourse(int id, AddTeacher model)
+        {
+            var teachList = new AddTeacher()
+            {
+                TeacherCourseList = model.TeacherCourseList
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Courses
+                        .Single(e => e.Id == id);
+                foreach (int teacherId in teachList.TeacherCourseList)
+                {
+                    var teacher = ctx
+                        .Teachers.Single(t => t.TeacherId == teacherId);
+                    entity.TeacherList.Add(teacher);
                 }
                 return ctx.SaveChanges() > 0;
             }

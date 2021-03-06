@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static School.Data.Activity;
 
 namespace School.Services
 {
@@ -30,7 +31,7 @@ namespace School.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Students.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
         public IEnumerable<StudentItems> GetAllStudents()
@@ -54,7 +55,7 @@ namespace School.Services
             }
 
         }
-        public StudentItems GetStudentById(int id)
+        public StudentItemsDetail GetStudentById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -71,13 +72,21 @@ namespace School.Services
                         cList.Add(course.Name);
                     }
                 }
-  
+                List<string> aList = new List<string>();
+                if (entity.ActivityList.Count != 0)
+                {
+                    foreach (Activity activity in entity.ActivityList)
+                    {
+                        aList.Add(Enum.GetName(typeof(NameOfActivity), entity.ActivityList));
+                    }
+                }
+
                 return
 
-                    new StudentItems
+                    new StudentItemsDetail
                     {
                         StudentId = entity.Id,
-                        StudentName = entity.LastName + entity.FirstName,
+                        StudentName = entity.LastName + "," + " " + entity.FirstName,
                         StudentGrade = entity.GradeLevel,
                         StudentCourses = cList                    
                     };
@@ -92,7 +101,7 @@ namespace School.Services
                     ctx
                         .Students
                         .Single(e => e.Id == model.Id);
-
+                
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
                 entity.GradeLevel = model.GradeLevel;
@@ -100,17 +109,7 @@ namespace School.Services
                 return ctx.SaveChanges() > 0;
             }
         }
-        //public void AddStudentToCourse(int studentId, int courseId)
-        //{
-        //    using(var ctx = new ApplicationDbContext())
-        //    {
-        //        var foundStudent = ctx.Students.Single(s => s.Id == studentId);
-        //        var foundCourse = ctx.Courses.Single(c => c.Id == courseId);
-        //        //foundCourse.StudentList.Add(foundStudent);
-        //        var testing = ctx.SaveChanges();
-        //    }
 
-        //}
         public bool DeleteStudent(int studentId)
         {
             using (var ctx = new ApplicationDbContext())
