@@ -12,6 +12,9 @@ namespace SchoolWebApi.Controllers
 {
     public class ActivityController : ApiController
     {
+
+
+
         private ActivityService CreateActivityService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -19,12 +22,21 @@ namespace SchoolWebApi.Controllers
             return activityService;
         }
 
+        [HttpGet]
         public IHttpActionResult Get()
         {
             ActivityService activityService = CreateActivityService();
             var activities = activityService.GetAllActivity();
             return Ok(activities);
         }
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            ActivityService activityService = CreateActivityService();
+            var activities = activityService.GetActivityById(id);
+            return Ok(activities);
+        }
+
 
         public IHttpActionResult Post(ActivityCreate activity)
         {
@@ -39,13 +51,14 @@ namespace SchoolWebApi.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Get(int id)
-        {
-            ActivityService activityService = CreateActivityService();
-            var note = activityService.GetActivityById(id);
-            return Ok(note);
-        }
+        //public IHttpActionResult Get(int id)
+        //{
+        //    ActivityService activityService = CreateActivityService();
+        //    var note = activityService.GetActivityById(id);
+        //    return Ok(note);
+        //}
 
+        [HttpPut]
         public IHttpActionResult Put(ActivityUpdate activity)
         {
             if (!ModelState.IsValid)
@@ -58,6 +71,8 @@ namespace SchoolWebApi.Controllers
 
             return Ok();
         }
+
+
 
         [HttpPut]
         [Route("api/Activity/{id}/Student")]
@@ -73,6 +88,22 @@ namespace SchoolWebApi.Controllers
 
             return Ok();
         }
+
+        [HttpPut]
+        [Route("api/Activity/{id}/Teacher")]
+        public IHttpActionResult AddTeacherToActivity(int id, [FromBody] AddTeacher model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateActivityService();
+
+            if (!service.AddTeacherToActivity(id, model))
+                return InternalServerError();
+
+            return Ok();
+        }
+
         public IHttpActionResult Delete(int id)
         {
             var service = CreateActivityService();
