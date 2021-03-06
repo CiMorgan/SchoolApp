@@ -77,7 +77,15 @@ namespace School.Services
                 {
                     foreach (Activity activity in entity.ActivityList)
                     {
-                        aList.Add(entity.ActivityList.ToString());
+                        aList.Add(activity.Name.ToString());
+                    }
+                }
+                List<string> dList = new List<string>();
+                if (entity.DisciplineList.Count != 0)
+                {
+                    foreach (Discipline discipline in entity.DisciplineList)
+                    {
+                        dList.Add(discipline.DisciplineType.ToString());
                     }
                 }
 
@@ -88,8 +96,8 @@ namespace School.Services
                         StudentId = entity.Id,
                         StudentName = entity.LastName + "," + " " + entity.FirstName,
                         StudentGrade = entity.GradeLevel,
-                        StudentCourses = cList   
-                        
+                        StudentCourses = cList,
+
                     };
             }
         }
