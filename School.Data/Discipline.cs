@@ -11,7 +11,7 @@ namespace School.Data
     {
         [Key]
         public int DisciplineId { get; set; }
-        
+
         [ForeignKey("Student")]
         public int StudentId { get; set; }
         public virtual Student Student { get; set; }
