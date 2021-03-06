@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Mar3v3 : DbMigration
+    public partial class mrch5x2 : DbMigration
     {
         public override void Up()
         {
@@ -25,12 +25,11 @@
                 c => new
                     {
                         TeacherId = c.Int(nullable: false, identity: true),
-                        TeacherName = c.String(),
-                        FirstName = c.String(),
-                        LastName = c.String(),
-                        Department = c.Int(nullable: false),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(nullable: false),
                         CreatedUtc = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedUtc = c.DateTimeOffset(precision: 7),
+                        Department = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.TeacherId);
             
@@ -52,21 +51,30 @@
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
                         GradeLevel = c.Int(nullable: false),
+                        Discipline_DisciplineId = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Disciplines", t => t.Discipline_DisciplineId)
+                .Index(t => t.Discipline_DisciplineId);
             
             CreateTable(
                 "dbo.Disciplines",
                 c => new
                     {
                         DisciplineId = c.Int(nullable: false, identity: true),
-                        ModifiedUtc = c.DateTimeOffset(precision: 7),
-                        CreatedUtc = c.DateTimeOffset(nullable: false, precision: 7),
+                        StudentId = c.Int(nullable: false),
                         Comment = c.String(),
                         Expelled = c.Boolean(nullable: false),
+                        ModifiedUtc = c.DateTimeOffset(precision: 7),
+                        CreatedUtc = c.DateTimeOffset(nullable: false, precision: 7),
                         DisciplineType = c.Int(nullable: false),
+                        Student_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.DisciplineId);
+                .PrimaryKey(t => t.DisciplineId)
+                .ForeignKey("dbo.Students", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.Students", t => t.Student_Id)
+                .Index(t => t.StudentId)
+                .Index(t => t.Student_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -163,19 +171,6 @@
                 .Index(t => t.Course_Id);
             
             CreateTable(
-                "dbo.DisciplineStudents",
-                c => new
-                    {
-                        Discipline_DisciplineId = c.Int(nullable: false),
-                        Student_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Discipline_DisciplineId, t.Student_Id })
-                .ForeignKey("dbo.Disciplines", t => t.Discipline_DisciplineId, cascadeDelete: true)
-                .ForeignKey("dbo.Students", t => t.Student_Id, cascadeDelete: true)
-                .Index(t => t.Discipline_DisciplineId)
-                .Index(t => t.Student_Id);
-            
-            CreateTable(
                 "dbo.CourseTeachers",
                 c => new
                     {
@@ -199,16 +194,15 @@
             DropForeignKey("dbo.Activities", "TeacherId", "dbo.Teachers");
             DropForeignKey("dbo.CourseTeachers", "Teacher_TeacherId", "dbo.Teachers");
             DropForeignKey("dbo.CourseTeachers", "Course_Id", "dbo.Courses");
-            DropForeignKey("dbo.DisciplineStudents", "Student_Id", "dbo.Students");
-            DropForeignKey("dbo.DisciplineStudents", "Discipline_DisciplineId", "dbo.Disciplines");
+            DropForeignKey("dbo.Disciplines", "Student_Id", "dbo.Students");
+            DropForeignKey("dbo.Students", "Discipline_DisciplineId", "dbo.Disciplines");
+            DropForeignKey("dbo.Disciplines", "StudentId", "dbo.Students");
             DropForeignKey("dbo.StudentCourses", "Course_Id", "dbo.Courses");
             DropForeignKey("dbo.StudentCourses", "Student_Id", "dbo.Students");
             DropForeignKey("dbo.StudentActivities", "Activity_Id", "dbo.Activities");
             DropForeignKey("dbo.StudentActivities", "Student_Id", "dbo.Students");
             DropIndex("dbo.CourseTeachers", new[] { "Teacher_TeacherId" });
             DropIndex("dbo.CourseTeachers", new[] { "Course_Id" });
-            DropIndex("dbo.DisciplineStudents", new[] { "Student_Id" });
-            DropIndex("dbo.DisciplineStudents", new[] { "Discipline_DisciplineId" });
             DropIndex("dbo.StudentCourses", new[] { "Course_Id" });
             DropIndex("dbo.StudentCourses", new[] { "Student_Id" });
             DropIndex("dbo.StudentActivities", new[] { "Activity_Id" });
@@ -219,9 +213,11 @@
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Disciplines", new[] { "Student_Id" });
+            DropIndex("dbo.Disciplines", new[] { "StudentId" });
+            DropIndex("dbo.Students", new[] { "Discipline_DisciplineId" });
             DropIndex("dbo.Activities", new[] { "TeacherId" });
             DropTable("dbo.CourseTeachers");
-            DropTable("dbo.DisciplineStudents");
             DropTable("dbo.StudentCourses");
             DropTable("dbo.StudentActivities");
             DropTable("dbo.AspNetUserLogins");

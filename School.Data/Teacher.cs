@@ -33,9 +33,11 @@ namespace School.Data
         }
         public DepartmentName Department { get; set; }
         public virtual ICollection<Course> CourseList { get; set; }
+        public virtual ICollection<Activity> ActivityList { get; set; }
         public Teacher()
         {
             CourseList = new HashSet<Course>();
+            ActivityList = new HashSet<Activity>();
         }
     }
 }

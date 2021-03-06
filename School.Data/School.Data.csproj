@@ -91,17 +91,9 @@
     <Compile Include="Course.cs" />
     <Compile Include="Discipline.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202103032050199_Mar3v3.cs" />
-    <Compile Include="Migrations\202103032050199_Mar3v3.designer.cs">
-      <DependentUpon>202103032050199_Mar3v3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103050039224_4MAR21x2.cs" />
-    <Compile Include="Migrations\202103050039224_4MAR21x2.designer.cs">
-      <DependentUpon>202103050039224_4MAR21x2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103060404312_March4.cs" />
-    <Compile Include="Migrations\202103060404312_March4.designer.cs">
-      <DependentUpon>202103060404312_March4.cs</DependentUpon>
+    <Compile Include="Migrations\202103062042564_mrch5x2.cs" />
+    <Compile Include="Migrations\202103062042564_mrch5x2.designer.cs">
+      <DependentUpon>202103062042564_mrch5x2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202103061523105_march6.cs" />
     <Compile Include="Migrations\202103061523105_march6.designer.cs">
@@ -117,14 +109,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103032050199_Mar3v3.resx">
-      <DependentUpon>202103032050199_Mar3v3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103050039224_4MAR21x2.resx">
-      <DependentUpon>202103050039224_4MAR21x2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103060404312_March4.resx">
-      <DependentUpon>202103060404312_March4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103062042564_mrch5x2.resx">
+      <DependentUpon>202103062042564_mrch5x2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103061523105_march6.resx">
       <DependentUpon>202103061523105_march6.cs</DependentUpon>
