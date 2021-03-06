@@ -68,7 +68,7 @@ namespace SchoolWebApi.Controllers
 
             var service = CreateActivityService();
 
-            if (!service.AddStudentToActivity(id, model))
+            if (!service.AddStudentToActivity(id, model)) 
                 return InternalServerError();
 
             return Ok();
