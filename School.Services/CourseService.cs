@@ -25,6 +25,7 @@ namespace School.Services
                 Id = model.Id,
                 Name = model.Name,
                 Department = model.Department,
+
                 //TeacherList = model.TeacherList,
                 //StudentList = model.StudentList
 
