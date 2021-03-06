@@ -11,6 +11,10 @@ namespace School.Data
     {
         [Key]
         public int DisciplineId { get; set; }
+        
+        [ForeignKey("Student")]
+        public int StudentId { get; set; }
+        public virtual Student Student { get; set; }
         public string Comment { get; set; }
         public bool Expelled { get; set; }
         public DateTimeOffset? ModifiedUtc { get; set; }
@@ -20,7 +24,6 @@ namespace School.Data
             Detention = 1,
             InSchoolSuspension,
             OutOfSchoolSuspension,
-            Expulsion
         }
         public TypeOfDiscipline DisciplineType { get; set; }
         public virtual ICollection<Student> StudentList { get; set; }

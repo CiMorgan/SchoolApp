@@ -12,8 +12,10 @@ namespace School.Models
     {
         [Required]
         public int DisciplineId { get; set; }
+        public int StudentId { get; set; }
         [Required]
         public string Comment { get; set; }
+        public bool Expelled { get; set; }
 
         public TypeOfDiscipline DisciplineType { get; set; }
 

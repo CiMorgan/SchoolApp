@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static School.Data.Discipline;
 
 namespace School.Services
 {
@@ -23,7 +24,9 @@ namespace School.Services
                 new Discipline()
                 {
                     DisciplineId = model.DisciplineId,
+                    StudentId = model.StudentId,
                     DisciplineType = model.DisciplineType,
+                    Expelled = model.Expelled,
                     Comment = model.Comment,
                     CreatedUtc = DateTimeOffset.Now
                 };
@@ -38,20 +41,22 @@ namespace School.Services
          {
              using (var ctx = new ApplicationDbContext())
              {
-                 var query = 
-                     ctx
-                         .Disciplines
-                         .Select(
-                             e =>
-                                 new DisciplineListItem
-                                 {
-                                     DisciplineId = e.DisciplineId,
-                                     DisciplineType = e.DisciplineType,
-                                     Comment = e.Comment,
-                                     CreatedUtc = e.CreatedUtc,
-                                     ModifiedUtc = e.ModifiedUtc,
-                                 }
-                         );
+                var query =
+                    ctx
+                        .Disciplines
+                        .Select(
+                            e =>
+                                new DisciplineListItem
+                                {
+                                    StudentName = (e.Student.FirstName + " " + e.Student.LastName),
+                                    DisciplineId = e.DisciplineId,
+                                    DisciplineType = Enum.GetName(typeof(TypeOfDiscipline), e.DisciplineType),
+                                    Expelled = e.Expelled,
+                                    Comment = e.Comment,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ModifiedUtc = e.ModifiedUtc
+                                }
+                        );
 
                  return query.ToArray();
              }
@@ -67,13 +72,15 @@ namespace School.Services
                         .Single(e => e.DisciplineId == id);
                 foreach (Student student in entity.StudentList)
                 {
-                    disciplineStudentList.Add(student.FirstName + student.LastName);
+                    disciplineStudentList.Add(student.FirstName + " " + student.LastName);
                 }
                 return
                     new DisciplineDetail
                     {
+                        StudentName = (entity.Student.FirstName + " " + entity.Student.LastName),
                         DisciplineId = entity.DisciplineId,
-                        DisciplineType = entity.DisciplineType,
+                        DisciplineType = Enum.GetName(typeof(TypeOfDiscipline), entity.DisciplineType),
+                        Expelled = entity.Expelled,
                         Comment = entity.Comment,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
@@ -91,8 +98,10 @@ namespace School.Services
                             e =>
                                 new DisciplineListItem
                                 {
+                                    StudentName = (e.Student.FirstName + " " + e.Student.LastName),
                                     DisciplineId = e.DisciplineId,
-                                    DisciplineType = e.DisciplineType,
+                                    DisciplineType = Enum.GetName(typeof(TypeOfDiscipline), e.DisciplineType),
+                                    Expelled = e.Expelled,
                                     Comment = e.Comment,
                                     CreatedUtc = e.CreatedUtc,
                                     ModifiedUtc = e.ModifiedUtc,
@@ -114,6 +123,7 @@ namespace School.Services
 
                 entity.DisciplineType = model.DisciplineType;
                 entity.Comment = model.Comment;
+                entity.Expelled = model.Expelled;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
