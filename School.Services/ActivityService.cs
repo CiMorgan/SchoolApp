@@ -96,9 +96,7 @@ namespace School.Services
                             //entity.Duration = model.ActivityDuration;
 
                 return ctx.SaveChanges() == 1;
-
             }
-
         }
 
         public bool DeleteActivity(int activityId)

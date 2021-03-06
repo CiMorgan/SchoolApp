@@ -48,7 +48,7 @@ namespace School.Services
                                 {
                                     TeacherId = e.TeacherId,
                                     TeacherName = e.LastName + e.FirstName,
-                                    //Department = Enum.GetName(typeof(DepartmentName), e.Department)
+                                    Department = Enum.GetName(typeof(DepartmentName), e.Department)
                                 }
                         );
 

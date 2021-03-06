@@ -63,7 +63,7 @@ namespace School.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var stList = new List<string>();
-                var tList = new List<string>();
+                var teachList = new List<string>();
                 var entity =
                     ctx
                         .Courses
@@ -75,7 +75,7 @@ namespace School.Services
 
                 foreach (Teacher teacher in entity.TeacherList)
                 {
-                    tList.Add(teacher.LastName);
+                    teachList.Add(teacher.LastName);
                 }
 
                 return
@@ -84,9 +84,7 @@ namespace School.Services
                     CourseId = entity.Id,
                     CourseName = entity.Name,
                     CourseDepartment = entity.Department,
-
-                    CourseTeacher = tList, 
-
+                    CourseTeacher = teachList, 
                     CourseStudent = stList
                 };
             }
@@ -141,6 +139,28 @@ namespace School.Services
                     var student = ctx
                         .Students.Single(s => s.Id == studentId);
                     entity.StudentList.Add(student);
+                }
+                return ctx.SaveChanges() > 0;
+            }
+        }
+
+        public bool AddTeacherToCourse(int id, AddTeacher model)
+        {
+            var teachList = new AddTeacher()
+            {
+                TeacherCourseList = model.TeacherCourseList
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Courses
+                        .Single(e => e.Id == id);
+                foreach (int teacherId in teachList.TeacherCourseList)
+                {
+                    var teacher = ctx
+                        .Teachers.Single(t => t.TeacherId == teacherId);
+                    entity.TeacherList.Add(teacher);
                 }
                 return ctx.SaveChanges() > 0;
             }
