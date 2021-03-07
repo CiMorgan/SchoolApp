@@ -38,7 +38,7 @@ namespace School.Services
             }
         }
 
-        public IEnumerable<CourseUpdate> GetAllCourse()
+        public IEnumerable<CourseItems> GetAllCourse()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -47,19 +47,22 @@ namespace School.Services
                         .Courses
                         .Select(
                             e =>
-                                new CourseUpdate
+                                new CourseItems
                                 {
-                                    CourseId = e.Id,
+                                    Id = e.Id,
                                     CourseName = e.Name,
-                                    CourseDepartment = e.Department,
+                                    CourseDepartment = e.Department.ToString(),
+                                    //CourseTeacher = e.TeacherList.ToString(),
+                                    //CourseStudent = e.StudentList.ToString(),
                                 }
+
                         );
 
                 return query.ToArray();
             }
         }
 
-        public CourseUpdate GetCourseById(int id)
+        public CourseItemsDetail GetCourseById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -80,17 +83,16 @@ namespace School.Services
                 }
 
                 return
-                new CourseUpdate
+                new CourseItemsDetail
                 {
-                    CourseId = entity.Id,
+                    Id = entity.Id,
                     CourseName = entity.Name,
-                    CourseDepartment = entity.Department,
-                    CourseTeacher = teachList, 
-                    CourseStudent = stList
+                    Department = entity.Department.ToString(),
+                    TeacherList = teachList, 
+                    StudentList = stList
                 };
             }
         }
-
         public bool UpdateCourse(CourseUpdate model)
         {
             using (var ctx = new ApplicationDbContext())

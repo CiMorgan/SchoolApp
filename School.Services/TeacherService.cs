@@ -70,17 +70,20 @@ namespace School.Services
                 {
                     teacherCourseList.Add(course.Name);
                 }
-                var EC =
-                    ctx.Activities.Single(f => f.TeacherId == id);
- 
-                    teacherActivityList.Add(EC.Name.ToString());
-  
+
+                foreach (Activity activity in entity.ActivityList)
+                {
+                    teacherActivityList.Add(activity.Name.ToString());
+                }
                 return
                     new TeacherDetail
                     {
                         TeacherId = entity.TeacherId,
                         TeacherName = entity.LastName + " " + entity.FirstName,
-                        Department = Enum.GetName(typeof(DepartmentName), entity.Department)
+
+                        Department = Enum.GetName(typeof(DepartmentName), entity.Department),
+                        TeacherActivity = teacherActivityList,
+
                     };
             }
         }
@@ -118,8 +121,20 @@ namespace School.Services
                 entity.LastName = model.LastName;
                 entity.Department = model.Department;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
-
-                return ctx.SaveChanges() == 1;
+               
+                foreach (var courseId in model.ListOfCourses)
+                {
+                    var course = ctx
+                        .Courses.Single(s => s.Id == courseId);
+                    entity.CourseList.Add(course);
+                }
+                foreach (var activityId in model.ActivityLead)
+                {
+                    var activity = ctx
+                        .Activities.Single(s => s.Id == activityId);
+                    entity.ActivityList.Add(activity);
+                }
+                return ctx.SaveChanges() > 0;
             }
         }
         public bool DeleteTeacher(int teacherId)
