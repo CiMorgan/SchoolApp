@@ -36,7 +36,7 @@ namespace SchoolWebApi.Controllers
             if (!service.CreateCourse(course))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Course has been added.");
         }
 
         public IHttpActionResult Get(int id)
@@ -56,7 +56,7 @@ namespace SchoolWebApi.Controllers
             if (!service.UpdateCourse(course))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Coruse has been updated.");
         }
         [HttpPut]
         [Route("api/Course/{id}/Student/")]
@@ -70,7 +70,7 @@ namespace SchoolWebApi.Controllers
             if (!service.AddStudentToCourse(id, model))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Student has been added to course.");
         }
 
         [HttpPut]
@@ -85,7 +85,7 @@ namespace SchoolWebApi.Controllers
             if (!service.AddTeacherToCourse(id, model))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Teacher has been added to course.");
         }
         public IHttpActionResult Delete(int id)
         {
@@ -94,7 +94,7 @@ namespace SchoolWebApi.Controllers
             if (!service.DeleteCourse(id))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Course has been removed.");
         }
     }
 }

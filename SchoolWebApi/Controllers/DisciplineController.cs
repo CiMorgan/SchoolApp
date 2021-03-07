@@ -30,7 +30,7 @@ namespace SchoolWebApi.Controllers
             if (!service.CreateDiscipline(note))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Discipline hase been Created.");
         }
         private DisciplineService CreateDisciplineService()
         {
@@ -56,7 +56,7 @@ namespace SchoolWebApi.Controllers
             if (!service.UpdateDiscipline(Discipline))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Discipline has been updated.");
         }
         [HttpPut]
         [Route("api/Discipline/{id}/Student/")]
@@ -70,7 +70,7 @@ namespace SchoolWebApi.Controllers
             if (!service.AddDisciplineToStudent(id, model))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Student has new discipline.");
         }
         public IHttpActionResult Delete(int id)
         {
@@ -79,7 +79,7 @@ namespace SchoolWebApi.Controllers
             if (!service.DeleteDiscipline(id))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Discipline has been removed.");
         }
 
     }

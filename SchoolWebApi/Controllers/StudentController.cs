@@ -47,7 +47,7 @@ namespace SchoolWebApi.Controllers
             if (!service.CreateStudent(student))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("new student Added.");
         }
 
         [HttpPut]
@@ -61,7 +61,7 @@ namespace SchoolWebApi.Controllers
             if (!service.UpdateStudent(model))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Student has been updated.");
         }
 
         [HttpDelete]
@@ -72,7 +72,7 @@ namespace SchoolWebApi.Controllers
             if (!service.DeleteStudent(id))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Student has been removed from system.");
         }
     }
 }

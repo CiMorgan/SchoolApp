@@ -48,7 +48,7 @@ namespace SchoolWebApi.Controllers
             if (!service.CreateActivity(activity))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Activity has been added.");
         }
 
         //public IHttpActionResult Get(int id)
@@ -69,7 +69,7 @@ namespace SchoolWebApi.Controllers
             if (!service.UpdateActivity(activity))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Activity has been updated.");
         }
 
 
@@ -86,7 +86,7 @@ namespace SchoolWebApi.Controllers
             if (!service.AddStudentToActivity(id, model)) 
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Student has been added to activity.");
         }
 
         [HttpPut]
@@ -101,7 +101,7 @@ namespace SchoolWebApi.Controllers
             if (!service.AddTeacherToActivity(id, model))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Teacher has been added to activity.");
         }
 
         public IHttpActionResult Delete(int id)
@@ -111,7 +111,7 @@ namespace SchoolWebApi.Controllers
             if (!service.DeleteActivity(id))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Activity has been removed.");
         }
     }
 }

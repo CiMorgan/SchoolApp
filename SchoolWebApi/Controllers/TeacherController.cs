@@ -29,7 +29,7 @@ namespace SchoolWebApi.Controllers
             if (!service.CreateTeacher(teacher))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Teacher has been added.");
         }
         private TeacherService CreateTeacherService()
         {
@@ -55,7 +55,7 @@ namespace SchoolWebApi.Controllers
             if (!service.UpdateTeacher(note))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Teacher has been updated.");
         }
         [HttpPut]
         [Route("api/Teacher/{id}/Course/")]
@@ -69,7 +69,7 @@ namespace SchoolWebApi.Controllers
             if (!service.AddTeacherToCourse(id, model))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Teacher has been added to course.");
         }
         //[HttpPut]
         //[Route("api/Teacher/{id}/Activity/")]
@@ -83,7 +83,7 @@ namespace SchoolWebApi.Controllers
         //    if (!service.AddTeacherToActivity(id, model))
         //        return InternalServerError();
 
-        //    return Ok();
+        //    return Ok("Teacher has been added to activity.");
         //}
         public IHttpActionResult Delete(int id)
         {
@@ -92,7 +92,7 @@ namespace SchoolWebApi.Controllers
             if (!service.DeleteTeacher(id))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Teacher has been removed.");
         }
 
     }
