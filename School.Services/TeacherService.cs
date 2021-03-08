@@ -48,8 +48,8 @@ namespace School.Services
                                 new TeacherListItem
                                 {
                                     TeacherId = e.TeacherId,
-                                    TeacherName = e.LastName + " " + e.FirstName,
-                                    Department = e.Department.ToString()
+                                    TeacherName = e.LastName + ", " + e.FirstName,
+                                    Department = e.Department.ToString(),
                                 }
                         );
 
@@ -79,32 +79,12 @@ namespace School.Services
                     new TeacherDetail
                     {
                         TeacherId = entity.TeacherId,
-                        TeacherName = entity.LastName + " " + entity.FirstName,
+                        TeacherName = entity.LastName + ", " + entity.FirstName,
                         Department = Enum.GetName(typeof(DepartmentName), entity.Department),
                         TeacherActivity = teacherActivityList,
+                        TeacherCourse = teacherCourseList
                     };
             }
-        }
-        public IEnumerable<TeacherListItem> GetAllTeachers()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Teachers
-                        .Select(
-                            e =>
-                                new TeacherListItem
-                                {
-                                    TeacherId = e.TeacherId,
-                                    TeacherName = e.LastName + " " + e.FirstName,
-                                    Department = Enum.GetName(typeof(DepartmentName), e.Department),
-                                }
-                        );
-
-                return query.ToArray();
-            }
-
         }
         public bool UpdateTeacher(TeacherEdit model)
         {
@@ -119,7 +99,7 @@ namespace School.Services
                 entity.LastName = model.LastName;
                 entity.Department = model.Department;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
-               
+
                 foreach (var courseId in model.ListOfCourses)
                 {
                     var course = ctx
@@ -149,27 +129,27 @@ namespace School.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool AddTeacherToCourse(int id, AddTeacher model)
-        {
-            var courseList = new AddTeacher()
-            {
-                TeacherCourseList = model.TeacherCourseList
-            };
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Courses
-                        .Single(e => e.Id == id);
-                foreach (int teacherId in courseList.TeacherCourseList)
-                {
-                    var teacher = ctx
-                        .Teachers.Single(s => s.TeacherId == teacherId);
-                    entity.TeacherList.Add(teacher);
-                }
-                return ctx.SaveChanges() > 0;
-            }
-        }
+        //public bool AddTeacherToCourse(int id, AddTeacher model)
+        //{
+        //    var teacherList = new AddTeacher()
+        //    {
+        //        TeacherCourseList = model.TeacherCourseList
+        //    };
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity =
+        //            ctx
+        //                .Teachers
+        //                .Single(e => e.TeacherId == id);
+        //        foreach (int courseId in teacherList.TeacherCourseList)
+        //        {
+        //            var course = ctx
+        //                .Courses.Single(s => s.Id == courseId);
+        //            entity.CourseList.Add(course);
+        //        }
+        //        return ctx.SaveChanges() > 0;
+        //    }
+        //}
         //public bool AddTeacherToActivity(int id, AddTeacher model)
         //{
         //    var activityList = new AddTeacher()

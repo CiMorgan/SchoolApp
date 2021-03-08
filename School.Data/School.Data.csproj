@@ -91,13 +91,9 @@
     <Compile Include="Course.cs" />
     <Compile Include="Discipline.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202103062042564_mrch5x2.cs" />
-    <Compile Include="Migrations\202103062042564_mrch5x2.designer.cs">
-      <DependentUpon>202103062042564_mrch5x2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103061523105_march6.cs" />
-    <Compile Include="Migrations\202103061523105_march6.designer.cs">
-      <DependentUpon>202103061523105_march6.cs</DependentUpon>
+    <Compile Include="Migrations\202103072359368_marchx4.cs" />
+    <Compile Include="Migrations\202103072359368_marchx4.designer.cs">
+      <DependentUpon>202103072359368_marchx4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,11 +105,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103062042564_mrch5x2.resx">
-      <DependentUpon>202103062042564_mrch5x2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103061523105_march6.resx">
-      <DependentUpon>202103061523105_march6.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103072359368_marchx4.resx">
+      <DependentUpon>202103072359368_marchx4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
