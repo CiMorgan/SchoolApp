@@ -9,17 +9,15 @@
 1. Credits
 1. License
 
-
-
 #### 1. Description
 The School WebAPI allows school administrators and staff to connect their students and teachers with courses, extracurricular activities, and disciplinary infractions. The user will be able to see all students and their grade level, and view the details (name, grade level, courses, and extracurricular activities) for a specific student. The users can also view all teachers and their departments, along with the details (name, department, courses taught, and extracurricular activities) for a specific teacher. For courses, the user will be able to see a list of all courses plus, for a specific course, determine the students enrolled in that course and the teacher(s) that teach the course. For extracurricular activities, the user will be able to see a list of all extracurricular activities and their duration (season), and for a specific activity, view a list of participating students and the lead teacher. For discipline, the user will be able to retrieve the number of each type of infraction, view the details of a specific infraction, and view infraction(s) by date. All major features allow the user to identify trends, determine potential shortfalls, and respond appropriately to best meet the needs of the school environment. 
-
 
 #### 2. Installation 
 SchoolApp is a .NET Framework web application built using Visual Studio and tested using Postman. 
 
 #### 3. Usage: 
 The following endpoints are used to add, update, delete, and retrieve information from the various databases.
+
 * Student Database
   * (Post) api/Student - This endpoint creates a new student. In the body, it requires Id (int), FirstName (string), LastName (string), and GradeLevel.
   * (Get) api/Student - This endpoint returns a list of all students with the student id, name, and grade level.
@@ -67,5 +65,5 @@ The following endpoints are used to add, update, delete, and retrieve informatio
   * Cindy Morgan
   * Ben Thomas
 
-
 #### 5. License
+This project is not yet ready for primetime.
