@@ -57,34 +57,7 @@ namespace SchoolWebApi.Controllers
 
             return Ok();
         }
-        //[HttpPut]
-        //[Route("api/Teacher/{id}/Course/")]
-        //public IHttpActionResult AddTeacherToCourse(int id, [FromBody] AddTeacher model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-
-        //    var service = CreateTeacherService();
-
-        //    if (!service.AddTeacherToCourse(id, model))
-        //        return InternalServerError();
-
-        //    return Ok();
-        //}
-        //[HttpPut]
-        //[Route("api/Teacher/{id}/Activity/")]
-        //public IHttpActionResult AddTeacherToActivity(int id, [FromBody] AddActivityTeacher model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-
-        //    var service = CreateTeacherService();
-
-        //    if (!service.AddTeacherToActivity(id, model))
-        //        return InternalServerError();
-
-        //    return Ok();
-        //}
+        
         public IHttpActionResult Delete(int id)
         {
             var service = CreateTeacherService();

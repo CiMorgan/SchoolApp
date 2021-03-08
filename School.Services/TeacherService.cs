@@ -129,47 +129,6 @@ namespace School.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        //public bool AddTeacherToCourse(int id, AddTeacher model)
-        //{
-        //    var teacherList = new AddTeacher()
-        //    {
-        //        TeacherCourseList = model.TeacherCourseList
-        //    };
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //                .Teachers
-        //                .Single(e => e.TeacherId == id);
-        //        foreach (int courseId in teacherList.TeacherCourseList)
-        //        {
-        //            var course = ctx
-        //                .Courses.Single(s => s.Id == courseId);
-        //            entity.CourseList.Add(course);
-        //        }
-        //        return ctx.SaveChanges() > 0;
-        //    }
-        //}
-        //public bool AddTeacherToActivity(int id, AddTeacher model)
-        //{
-        //    var activityList = new AddTeacher()
-        //    {
-        //        TeacherActivityList = model.TeacherActivityList
-        //    };
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //                .Activities
-        //                .Single(e => e.Id == id);
-        //        foreach (int activityId in activityList.TeacherActivityList)
-        //        {
-        //            var activity = ctx
-        //                .Activities.Single(s => s.Id == activityId);
-        //            entity.TeacherList.Add(teacher);
-        //        }
-        //        return ctx.SaveChanges() > 0;
-        //    }
     }
 }
 
