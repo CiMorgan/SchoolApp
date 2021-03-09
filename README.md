@@ -73,4 +73,4 @@ The following endpoints are used to add, update, delete, and retrieve informatio
   *  https://www.entityframeworktutorial.net/
 
 #### 5. License
-This project is not yet ready for primetime.
+Although it is operational, this project is not yet ready for primetime.
