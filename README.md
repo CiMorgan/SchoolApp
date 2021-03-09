@@ -67,5 +67,10 @@ The following endpoints are used to add, update, delete, and retrieve informatio
   * Cindy Morgan
   * Ben Thomas
 
+* References used include:
+  *  https://docs.microsoft.com/en-us/aspnet/overview
+  *  https://docs.microsoft.com/en-us/ef/
+  *  https://www.entityframeworktutorial.net/
+
 #### 5. License
 This project is not yet ready for primetime.
