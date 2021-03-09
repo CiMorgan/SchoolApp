@@ -12,6 +12,8 @@
 #### 1. Description
 The School WebAPI allows school administrators and staff to connect their students and teachers with courses, extracurricular activities, and disciplinary infractions. The user will be able to see all students and their grade level, and view the details (name, grade level, courses, and extracurricular activities) for a specific student. The users can also view all teachers and their departments, along with the details (name, department, courses taught, and extracurricular activities) for a specific teacher. For courses, the user will be able to see a list of all courses plus, for a specific course, determine the students enrolled in that course and the teacher(s) that teach the course. For extracurricular activities, the user will be able to see a list of all extracurricular activities and their duration (season), and for a specific activity, view a list of participating students and the lead teacher. For discipline, the user will be able to retrieve the number of each type of infraction, view the details of a specific infraction, and view infraction(s) by date. All major features allow the user to identify trends, determine potential shortfalls, and respond appropriately to best meet the needs of the school environment. 
 
+The School WebAPI connects five data tables: Student, Teacher, Course, Activity, and Discipline.
+
 #### 2. Installation 
 SchoolApp is a .NET Framework web application built using Visual Studio and tested using Postman. 
 
