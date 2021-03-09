@@ -30,34 +30,34 @@ The following endpoints are used to add, update, delete, and retrieve informatio
   * (Get) api/Teacher - This endpoint returns a list of all teachers with teacher id, teacher name, and department.
   * (Get) api/Teacher/{id} - This endpoint returns the teacher id, name, department, course list, and activity list for a specific teacher. It requires the TeacherId (int) in the uri.
   * (Put) api/Teacher - This endpoint updates a teacher. In the body, it requires TeacherId (int), FirstName (string), LastName (string), and Department (enum). The user can also add ActivityLead (int) and/or ListOfCourses (int) to update the activities and/or courses in which the teacher is involved.
-  * (Put) api/Teacher/{id}/Course - This endpoint adds course(s) to a teacher. The uri requires the TeacherId, while the body requires TeacherCourseList (int).
-  * (Delete) api/Teacher/{id} - This endpoint allows the user to delete a teacher. It requires the TeacherId in the uri.
+  * (Put) api/Teacher/{id}/Course - This endpoint adds course(s) to a teacher. The uri requires the TeacherId (int), while the body requires TeacherCourseList (int).
+  * (Delete) api/Teacher/{id} - This endpoint allows the user to delete a teacher. It requires the TeacherId (int) in the uri.
   
 * Course Database
   * (Post) api/Course - This endpoint creates a course, allowing the user to choose a name for the course and placing it into an established department. The user has the option of adding teachers and/ or students at this time. The body requires Id (int), Name (string), and Department (enum). The user can also add TeacherList (int) and/or StudentList (int) to enter the teacher(s) for the course and/or the students enrolled in the course. 
   * (Get) api/Course - This endpoint returns a list of all courses with the course id, name, and its department.
-  * (Get) api/Course/{id} - This endpoint returns returns the course id, name, department, list of teachers, and list of teachers for a specific course. It requires the CourseId in the uri.
+  * (Get) api/Course/{id} - This endpoint returns returns the course id, name, department, list of teachers, and list of teachers for a specific course. It requires the CourseId (int) in the uri.
   * (Put) api/Course - This endpoint updates a course's name and/or department. The user has the option of adding teachers and/or students at this time. The body requires CourseId (int), CourseName (string), and CourseDepartment (enum). The user can also add CourseTeacher (int) and/or CourseStudent (int) to enter the teacher(s) for the course and/or the students enrolled in the course.
-  * (Put) api/Course/{id}/Student - This endpoint adds a student(s) to a course that exists. The uri requires the CourseId, while the body requires StudentCourseList (int). 
-  * (Put) api/Course/{id}/Teacher - This endpoint adds a teacher(s) to a course that exists. The uri requires the CourseId, while the body requires TeacherCourseList (int). 
-  * (Delete) api/Course/{id} - This endpoint allows the user to delete a course. It requires the CourseId in the uri.
+  * (Put) api/Course/{id}/Student - This endpoint adds a student(s) to a course that exists. The uri requires the CourseId (int), while the body requires StudentCourseList (int). 
+  * (Put) api/Course/{id}/Teacher - This endpoint adds a teacher(s) to a course that exists. The uri requires the CourseId (int), while the body requires TeacherCourseList (int). 
+  * (Delete) api/Course/{id} - This endpoint allows the user to delete a course. It requires the CourseId (int) in the uri.
   
 * Activity Database
   * (Post) api/Activity - This endpoint creates an activity. The body requires Id (int), Name (enum), and Duration (enum) of the activity.  
   * (Get) api/Activity - This endpoint returns a list of all activities with the activity id, name, and the season in which the activity occurs.
-  * (Get) api/Activity/{id} - This endpoint returns the activity id, name, the season in which the activity occurs, the lead teacher, and a list of students incolved in the activity.  It requires the activiy id (int) in the uri.
-  * (Put) api/Activity - 
-  * (Put) api/Activity/{id}/Student
-  * (Put) api/Activity/{id}/Teacher
-  * (Delete) api/Activity/{id} - This endpoint allows the user to delete an activity. It requires the CourseId in the uri.
+  * (Get) api/Activity/{id} - This endpoint returns the activity id, name, the season in which the activity occurs, the lead teacher, and a list of students incolved in the activity.  It requires the ActiviyId (int) in the uri.
+  * (Put) api/Activity - This endpoint allows the user to update an already created activity. In the body, it requires an ActivityId (int), ActivityName (enum) and ActivityDuration (enum) and can also be used to add a teacher (ActivityTeacherId, an int).
+  * (Put) api/Activity/{id}/Student - This endpoint allows the user to add students to an activity.  The uri requires the ActivityId (int), while the body requires StudentActivityList (int).
+  * (Put) api/Activity/{id}/Teacher - This endpoint adds a teacher to an activity that exists. The uri requires the ActivityId (int), while the body requires TeacherActivityList (int).
+  * (Delete) api/Activity/{id} - This endpoint allows the user to delete an activity. It requires the CourseId (int) in the uri.
   
 * Discipline Database
-  * (Post) api/Discipline - 
+  * (Post) api/Discipline - This endpoint creates a discipline record. In the body, it requires a DisciplineId (int), StudentId (int), Comment (string), Expelled (bool), DisciplineType (enum). It will also create a DateTime for when is was entered.
   * (Get) api/Discipline - This endpoint returns id, student name, comment, discipline type, expuilsion status, and time.
-  * (Get) api/Discipline/{id} - This endpoint returns id, student name, comment, discipline type, expuilsion status, and time. It requires id in both uri and body.
-  * (Put) api/Discipline 
-  * (Put) api/Discipline/{id}/Student
-  * (Delete) api/Discipline/{id} - This endpoint allows the user to delete a discipline. It requires the id in the uri.
+  * (Get) api/Discipline/{id} - This endpoint returns id, student name, comment, discipline type, expuilsion status, and time. It requires DisciplineId (int) in the uri.
+  * (Put) api/Discipline - This endpoint updates a discipline record. In the body, it requires a DisciplineId (int), Comment (string), Expelled (bool), DisciplineType (enum). It will also create a DateTime for when is was modified.
+  * (Put) api/Discipline/{id}/Student - This endpoint updates a discipline record. It requires a DisciplineId (int) in both the uri and the body.
+  * (Delete) api/Discipline/{id} - This endpoint allows the user to delete a discipline. It requires the DisciplineId (int) in the uri.
 
 #### 4. Credits: School web application for administrators built by Team Room 11 for completion of Blue Badge at Eleven Fifty Academy.
 * Members of Team 11:
