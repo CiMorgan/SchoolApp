@@ -88,31 +88,7 @@ namespace School.Services
                     };
             }
         }
-        public IEnumerable<DisciplineListItem> GetAllDiscipline()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Disciplines
-                        .Select(
-                            e =>
-                                new DisciplineListItem
-                                {
-                                    StudentName = (e.Student.FirstName + " " + e.Student.LastName),
-                                    DisciplineId = e.DisciplineId,
-                                    DisciplineType = Enum.GetName(typeof(TypeOfDiscipline), e.DisciplineType),
-                                    Expelled = e.Expelled,
-                                    Comment = e.Comment,
-                                    CreatedUtc = e.CreatedUtc,
-                                    ModifiedUtc = e.ModifiedUtc,
-                                }
-                        );
 
-                return query.ToArray();
-            }
-
-        }
         public bool UpdateDiscipline(DisciplineEdit model)
         {
             using (var ctx = new ApplicationDbContext())

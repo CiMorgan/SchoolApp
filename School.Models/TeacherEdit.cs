@@ -23,10 +23,10 @@ namespace School.Models
         public DepartmentName Department { get; set; }
 
         [Display(Name = "Courses Taught")]
-        public List<int> ListOfCourses  { get; set; }
+        public List<int> ListOfCourses { get; set; } = new List<int>();
 
         [Display(Name = "Activity")]
-        public List<int> ActivityLead { get; set; }
+        public List<int> ActivityLead { get; set; } = new List<int>();
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
