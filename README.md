@@ -15,7 +15,7 @@ The School WebAPI allows school administrators and staff to connect their studen
 The School WebAPI connects five data tables: Student, Teacher, Course, Activity, and Discipline.
 
 #### 2. Installation 
-SchoolApp is a .NET Framework web application built using Visual Studio and tested using Postman. It uses C#, Javascript, and HTML.
+SchoolApp is a .NET Framework web application built using Visual Studio with Entity Framework 6, Bootstrap, and jquery. Endpoints were tested using Postman. It uses C#, Javascript, and HTML.
 
 #### 3. Usage: 
 The following endpoints are used to add, update, delete, and retrieve information from the various databases.
