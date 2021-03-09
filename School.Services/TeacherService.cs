@@ -98,7 +98,7 @@ namespace School.Services
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
                 entity.Department = model.Department;
-                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+                //entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 foreach (var courseId in model.ListOfCourses)
                 {
